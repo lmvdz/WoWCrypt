@@ -6,6 +6,10 @@
   "description": "WoW Armory Desktop",
   "version": "0.0.2",
   "main": "electron.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/XeonPowder/WoWCrypt.git"
+  },
   "dependencies": {
     "vue": "^2.0.1",
     "vue-electron": "^1.0.0",

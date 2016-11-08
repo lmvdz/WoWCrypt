@@ -8,6 +8,10 @@
   "directories": {
     "output": "builds"
   },
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/XeonPowder/WoWCrypt.git"
+  },
   "scripts": {
     "build": "node tasks/release.js",
     "build:clean": "cross-env PLATFORM_TARGET=clean node tasks/release.js",

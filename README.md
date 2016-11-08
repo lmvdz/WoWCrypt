@@ -1,7 +1,8 @@
 # WoW Crypt
 
 > World of Warcraft Armory Desktop Application
->>Vue.js & Blizzard's WoW Community API
+>>Vue.js & Blizzard's WoW Community API  
+>>HTML, CSS, and VueJS 2.0
 
 ## Build Setup
 
@@ -30,7 +31,7 @@ npm run build
 # cleans the 'builds' folder
 npm run build:clean
 # build
-npm run build:[win32|darwin|mac|linux]
+npm run build:[win32|darwin|mas|linux]
 ```
 ``` bash
 # lint all JS/Vue component files in `app/src`
@@ -48,9 +49,10 @@ On this page you can navigate to subpages
 
 <ul>
   <li>Achievement Lookup</li>
-  <li>~~Auction House Data~~</li>
+  <li><del>Auction House Data<del></li>
   <li>Boss Lookup</li>
   <li>Character Lookup</li>
+  <li>Item Lookup</li>
 </ul>
 
 ## Todo

@@ -1,8 +1,9 @@
 {
   "name": "WoWCrypt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WoW Armory Desktop",
   "author": "Lars van der Zande <lmvdzd@gmail.com>",
+  "homepage": "https://github.com/XeonPowder/WoWCrypt",
   "license": "MIT",
   "directories": {
     "output": "builds"

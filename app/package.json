@@ -1,10 +1,10 @@
 {
   "author": "Lars van der Zande <lmvdzd@gmail.com>",
-  "homepage": "https://github.com/XeonPowder/",
+  "homepage": "https://github.com/XeonPowder/WoWCrypt",
   "name": "WoWCrypt",
   "productName": "WoW Crypt",
   "description": "WoW Armory Desktop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "electron.js",
   "dependencies": {
     "vue": "^2.0.1",

@@ -1,16 +1,21 @@
 <template>
-  <div class="container">
+  <container>
     <a class="recipeLink" @click="preventRepage" :href="recipe.link">
       <h3>
         <span>{{recipe.name}}</span>
         <span v-if="recipe.profession !== undefined"> - <span :style="{color: getProfessionColor()}">{{recipe.profession}}</span></span>
       </h3>
     </a>
-  </div>
+  </container>
 </template>
 
 <script>
+import Container from '../Container/Container'
+
 export default {
+  components: {
+    Container
+  },
   name: 'recipe',
   props: ['recipe'],
   methods: {

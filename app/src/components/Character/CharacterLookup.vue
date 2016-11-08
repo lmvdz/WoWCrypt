@@ -27,32 +27,42 @@ li{
   display: inline-block;
   list-style-type: none;
 }
-#error {
-  color: #e04b4b;
-}
 </style>
 
 <template>
-  <div class="characterHolder">
-    <div class="container characterLookup">
-      <h1>Character Lookup</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-      <div class="container">
-        <h3>Realm</h3>
-        <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterRealm" placeholder="Character Realm"></eInput>
+  <div>
+    <lookup title="Character Lookup" class="characterLookup">
+      <div>
+
+        <container>
+
+          <div class="">
+            <h3>Realm</h3>
+            <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterRealm" placeholder="Character Realm"></eInput>
+          </div>
+
+        </container>
+
+        <container>
+
+          <div>
+            <h3>Name</h3>
+            <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterName" placeholder="Character Name"></eInput>
+          </div>
+
+        </container>
+
+        <eButtonPrimary title="Search" id="search" @clicked="getCharacter(characterRealm, characterName)"></eButtonPrimary>
+        <h2 v-if="inputHasNumber" id="error">please enter non-numeric values</h2>
+        <h3 v-if="error" id="error">{{character.error}}</h3>
+        <div v-if="show" class="characterFound">
+          <character :useButton="true" :characterData="character"></character>
+        </div>
       </div>
-      <div class="container">
-        <h3>Name</h3>
-        <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterName" placeholder="Character Name"></eInput>
-      </div>
-      <eButtonPrimary title="Search" id="search" @clicked="getCharacter(characterRealm, characterName)"></eButtonPrimary>
-      <h2 v-if="inputHasNumber" id="error">please enter non-numeric values</h2>
-      <h3 v-if="error" id="error">{{character.error}}</h3>
-      <div v-if="show" class="characterFound">
-        <character :useButton="true" :characterData="character"></character>
-      </div>
-    </div>
-    <div v-if="containsValidItems(this.characters)" class="container characterHistory">
+    </lookup>
+    <container v-if="containsValidItems(this.characters)" class="characterHistory">
+
+      <div>
         <h1>History</h1>
         <ul>
           <div v-for="characterVar in characters">
@@ -61,12 +71,16 @@ li{
             </li>
           </div>
         </ul>
-    </div>
+      </div>
+      
+    </container>
   </div>
 
 </template>
 
 <script>
+import Lookup from '../Lookup/Lookup'
+import Container from '../Container/Container'
 import Character from './Character'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EButtonPrimary from '../EButton/EButtonPrimary'
@@ -74,6 +88,8 @@ import EInput from '../EInput/EInput'
 
 export default {
   components: {
+    Lookup,
+    Container,
     Character,
     EButtonDanger,
     EButtonPrimary,

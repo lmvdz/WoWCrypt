@@ -1,31 +1,39 @@
 <template>
-  <div class="">
-    <div class="container">
-      <h1>Boss Lookup</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-      <div class="container">
-        <h3>Boss ID</h3>
-        <eInput autofocus @enter="getBoss(bossId)" @keyup="checkForChange" v-model="bossId" placeholder="Boss ID"></eInput>
+  <div>
+    <lookup title="Boos Lookup">
+      <div>
+        <container>
+          <div>
+            <h3>Boss ID</h3>
+            <eInput autofocus @enter="getBoss(bossId)" @keyup="checkForChange" v-model="bossId" placeholder="Boss ID"></eInput>
+          </div>
+        </container>
+        <eButtonPrimary title="Search" id="search" @clicked="getBoss(bossId)"></eButtonPrimary>
+        <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+        <h3 v-if="error" id="error">{{boss.error}}</h3>
+        <boss v-if="show" :bossData="boss"></boss>
       </div>
-      <eButtonPrimary title="Search" id="search" @clicked="getBoss(bossId)"></eButtonPrimary>
-      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-      <h3 v-if="error" id="error">{{boss.error}}</h3>
-      <boss v-if="show" :bossData="boss"></boss>
-    </div>
-    <div v-if="containsValidItems(this.bossDb)" class="container bossLookupHistory">
-      <h1>History</h1>
-      <ul>
-        <div v-for="bossItem in bossDb">
-          <li v-if="bossItem.error === undefined">
-            <boss :bossData="bossItem"></boss>
-          </li>
-        </div>
-      </ul>
-    </div>
+    </lookup>
+
+    <container v-if="containsValidItems(this.bossDb)" class="bossLookupHistory">
+      <div>
+        <h1>History</h1>
+        <ul>
+          <div v-for="bossItem in bossDb">
+            <li v-if="bossItem.error === undefined">
+              <boss :bossData="bossItem"></boss>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </container>
+
   </div>
 </template>
 
 <script>
+import Lookup from '../Lookup/Lookup'
+import Container from '../Container/Container'
 import EInput from '../EInput/EInput'
 import EButtonPrimary from '../EButton/EButtonPrimary'
 import EButtonDanger from '../EButton/EButtonDanger'
@@ -36,7 +44,9 @@ export default {
     EInput,
     EButtonDanger,
     EButtonPrimary,
-    Boss
+    Boss,
+    Container,
+    Lookup
   },
   name: 'bosslookup',
   data () {
@@ -180,8 +190,5 @@ export default {
     list-style-position: inside;
     display: inline-block;
     list-style-type: none;
-  }
-  #error {
-    color: #b50000;
   }
 </style>

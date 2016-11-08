@@ -1,19 +1,22 @@
 <template>
   <lookup title="Recipe Lookup">
     <div>
-      <div class="container">
-        <h3>Recipe ID</h3>
-        <eInput @enter="getRecipe(recipeId)" @keyup="checkForChange" v-model="recipeId" placeholder="Recipe ID"></eInput>
-        <eButtonPrimary title="Search" id="search" @clicked="getRecipe(recipeId)"></eButtonPrimary>
-        <recipe v-if="show" :recipe="recipe"><recipe>
-        <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-        <h3 v-if="error" id="error">{{recipe.error}}</h3>
-      </div>
+      <container>
+        <div>
+          <h3>Recipe ID</h3>
+          <eInput @enter="getRecipe(recipeId)" @keyup="checkForChange" v-model="recipeId" placeholder="Recipe ID"></eInput>
+        </div>
+      </container>
+      <eButtonPrimary title="Search" id="search" @clicked="getRecipe(recipeId)"></eButtonPrimary>
+      <recipe v-if="show" :recipe="recipe"><recipe>
+      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+      <h3 v-if="error" id="error">{{recipe.error}}</h3>
     </div>
   </lookup>
 </template>
 
 <script>
+import Container from '../Container/Container'
 import Recipe from './Recipe'
 import Lookup from '../Lookup/Lookup'
 import EInput from '../EInput/EInput'
@@ -23,6 +26,7 @@ export default {
   name: 'recipelookup',
   components: {
     Recipe,
+    Container,
     Lookup,
     EInput,
     EButtonPrimary

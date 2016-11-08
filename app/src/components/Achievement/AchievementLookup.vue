@@ -1,35 +1,39 @@
 <style scoped>
-  #error {
-    color: #e04b4b;
-  }
 </style>
 
 <template>
-  <div class="container">
-    <h1>Achievement Lookup</h1>
-    <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-    <div class="container">
-      <h3>Achievement ID</h3>
-      <eInput @enter="getAchievement(achievementId)" @keyup="checkForChange" v-model="achievementId" placeholder="Achievement ID"></eInput>
+  <lookup title="Achievement Lookup">
+    <div>
+      <container>
+        <div>
+          <h3>Achievement ID</h3>
+          <eInput @enter="getAchievement(achievementId)" @keyup="checkForChange" v-model="achievementId" placeholder="Achievement ID"></eInput>
+        </div>
+      </container>
+      <eButtonPrimary title="Search" id="search" @clicked="getAchievement(achievementId)"></eButtonPrimary>
+      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+      <h3 v-if="error" id="error">{{achievement.error}}</h3>
+      <achievement v-if="show" :achievementData="achievement"></achievement>
     </div>
-    <eButtonPrimary title="Search" id="search" @clicked="getAchievement(achievementId)"></eButtonPrimary>
-    <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-    <h3 v-if="error" id="error">{{achievement.error}}</h3>
-    <achievement v-if="show" :achievementData="achievement"></achievement>
-  </div>
+  </lookup>
 </template>
 
 <script>
+import Container from '../Container/Container'
+import Lookup from '../Lookup/Lookup'
 import Achievement from './Achievement'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EButtonPrimary from '../EButton/EButtonPrimary'
 import EInput from '../EInput/EInput'
+
 export default {
   components: {
     Achievement,
     EButtonDanger,
     EButtonPrimary,
-    EInput
+    EInput,
+    Lookup,
+    Container
   },
   name: 'achievementlookup',
   data () {

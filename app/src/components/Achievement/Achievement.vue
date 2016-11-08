@@ -22,7 +22,7 @@
 <template>
 <div>
   <a @click="preventRepage" v-if="achievementData !== undefined" style="text-decoration: none;" :href="achievementData.WoWHeadLink" target="_blank">
-    <div class="container">
+    <container>
       <h3>
         <span v-if="achievementData.title !== undefined" id="achievementTitle">Title: </span>{{achievementData.title}}
         <br/>
@@ -30,20 +30,25 @@
         <br/>
         <span v-if="achievementData.reward !== undefined" id="achievementReward">Reward: </span>{{achievementData.reward}}
         <div v-if="achievementData.rewardItems !== undefined" v-for="reward in achievementData.rewards">
-          <div class="container">
+          <container>
             <a class="achievementRewardItem" @click="preventRepage" :href="reward.link">
               <span :style="{color: getColor(reward.quality)}"><small>{{reward.name}}<small></span>
             </a>
-          </div>
+          </container>
         </div>
       </h3>
-    </div>
+    </container>
   </a>
 </div>
 </template>
 
 <script>
+import Container from '../Container/Container'
+
 export default {
+  components: {
+    Container
+  },
   name: 'achievement',
   props: ['achievementData'],
   methods: {

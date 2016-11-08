@@ -5,20 +5,23 @@
 </style>
 
 <template>
-  <div class="container">
-    <h1>Auction House Data Status:</h1>
-    <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-    <eInput @enter="getAuctionData(realmName)" v-model="realmName" placeholder="Realm"></eInput>
-    <eButtonPrimary title="Search" id="search" @clicked="getAuctionData(realmName)"></eButtonPrimary>
-    <transition name="slide-fade">
-      <div v-if="show">
-        <auctions auctions="auctionData"></auctions>
-      </div>
-    </transition>
-  </div>
+  <container>
+    <div>
+      <h1>Auction House Data Status:</h1>
+      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
+      <eInput @enter="getAuctionData(realmName)" v-model="realmName" placeholder="Realm"></eInput>
+      <eButtonPrimary title="Search" id="search" @clicked="getAuctionData(realmName)"></eButtonPrimary>
+      <transition name="slide-fade">
+        <div v-if="show">
+          <auctions auctions="auctionData"></auctions>
+        </div>
+      </transition>
+    </div>
+  </container>
 </template>
 
 <script>
+import Container from '../Container/Container'
 import Auctions from './Auctions'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EButtonPrimary from '../EButton/EButtonPrimary'
@@ -26,6 +29,7 @@ import EInput from '../EInput/EInput'
 
 export default {
   components: {
+    Container,
     EButtonDanger,
     EButtonPrimary,
     EInput,

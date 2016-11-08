@@ -45,8 +45,7 @@
   <div>
     <notifications class="notifications"></notifications>
     <transition name="slide-fade" mode="out-in">
-      <router-view>
-      </router-view>
+      <router-view></router-view>
     </transition>
   </div>
 </template>
@@ -54,7 +53,7 @@
 <script>
   import store from 'src/vuex/store'
   import Notifications from 'src/components/Notification/Notifications'
-  
+
   export default {
     store,
     components: {

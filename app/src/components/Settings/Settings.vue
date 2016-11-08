@@ -1,32 +1,40 @@
 <template>
-  <div class="container">
-    <h1>Settings</h1>
-    <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-    <div class="container" id="apikey">
-      <h2>Community API Key</h2>
-      <eInput size="40" v-model="apiKey" :placeholder="apiPlaceholder"></eInput>
-      <h3 v-if="errors.api.error" id="error">{{errors.api.reason}}</h3>
+  <container>
+    <div>
+      <h1>Settings</h1>
+      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
+      <container id="apikey">
+        <div>
+          <h2>Community API Key</h2>
+          <eInput size="40" v-model="apiKey" :placeholder="apiPlaceholder"></eInput>
+          <h3 v-if="errors.api.error" id="error">{{errors.api.reason}}</h3>
+        </div>
+      </container>
+      <container id="region">
+        <div>
+          <h2>Region</h2>
+          <select id="regionSelector" v-model="region">
+            <option value="EU">EU</option>
+            <option value="KR">KR</option>
+            <option value="TW">TW</option>
+            <option value="US">US</option>
+          </select>
+        </div>
+      </container>
+      <eButtonPrimary id="save" @clicked="saveSettings" title="Save"></eButtonPrimary>
     </div>
-    <div class="container" id="region">
-      <h2>Region</h2>
-      <select id="regionSelector" v-model="region">
-        <option value="EU">EU</option>
-        <option value="KR">KR</option>
-        <option value="TW">TW</option>
-        <option value="US">US</option>
-      </select>
-    </div>
-    <eButtonPrimary id="save" @clicked="saveSettings" title="Save"></eButtonPrimary>
-  </div>
+  </container>
 </template>
 
 <script>
+import Container from '../Container/Container'
 import EInput from '../EInput/EInput'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EButtonPrimary from '../EButton/EButtonPrimary'
 
 export default {
   components: {
+    Container,
     EInput,
     EButtonDanger,
     EButtonPrimary

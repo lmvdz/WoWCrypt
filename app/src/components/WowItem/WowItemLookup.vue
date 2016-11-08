@@ -18,40 +18,43 @@
     display: inline-block;
     list-style-type: none;
   }
-  #error {
-    color: #b50000;
-  }
 </style>
 
 <template>
   <div class="">
-    <div class="container wowItemLookup">
-      <h1>Item Lookup</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
-      <div class="container">
-        <h3>Item ID</h3>
-        <eInput @enter="getItem(itemId)" @keyup="checkForChange" v-model="itemId" placeholder="Item ID"></eInput>
+    <lookup title="Item Lookup" class="wowItemLookup">
+      <div>
+        <container>
+          <div>
+            <h3>Item ID</h3>
+            <eInput @enter="getItem(itemId)" @keyup="checkForChange" v-model="itemId" placeholder="Item ID"></eInput>
+          </div>
+        </container>
+        <eButtonPrimary title="Search" id="search" @clicked="getItem(itemId)"></eButtonPrimary>
+        <wowItem class="wowItem" v-if="show" :itemData="item"></wowItem>
+        <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+        <h3 v-if="error" id="error">{{item.error}}</h3>
       </div>
-      <eButtonPrimary title="Search" id="search" @clicked="getItem(itemId)"></eButtonPrimary>
-      <wowItem class="wowItem" v-if="show" :itemData="item"></wowItem>
-      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-      <h3 v-if="error" id="error">{{item.error}}</h3>
-    </div>
-    <div v-if="containsValidItems(this.itemDb)" class="container itemLookupHistory">
-      <h1>History</h1>
-      <ul>
-        <div v-for="itm in itemDb">
-          <li v-if="itm.error === undefined">
-            <wowItem class="wowItem" :itemData="itm"></wowItem>
-          </li>
-        </div>
-      </ul>
-    </div>
+    </lookup>
+    <container v-if="containsValidItems(this.itemDb)" class="itemLookupHistory">
+      <div>
+        <h1>History</h1>
+        <ul>
+          <div v-for="itm in itemDb">
+            <li v-if="itm.error === undefined">
+              <wowItem class="wowItem" :itemData="itm"></wowItem>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </container>
   </div>
 
 </template>
 
 <script>
+import Lookup from '../Lookup/Lookup'
+import Container from '../Container/Container'
 import EButtonPrimary from '../EButton/EButtonPrimary'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EInput from '../EInput/EInput'
@@ -62,7 +65,9 @@ export default {
     EButtonPrimary,
     EButtonDanger,
     EInput,
-    WowItem
+    WowItem,
+    Container,
+    Lookup
   },
   name: 'wowitemlookup',
   data () {

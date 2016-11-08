@@ -1,0 +1,26 @@
+export const DECREMENT_MAIN_COUNTER = 'DECREMENT_MAIN_COUNTER'
+export const INCREMENT_MAIN_COUNTER = 'INCREMENT_MAIN_COUNTER'
+//  notification
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
+//  api
+export const SETUP_API = 'SETUP_API'
+export const SET_API_KEY = 'SET_API_KEY'
+export const SET_API_REGION = 'SET_API_REGION'
+export const ACHIEVEMENT = 'ACHIEVEMENT'
+export const AUCTION_DATA_STATUS = 'AUCTION_DATA_STATUS'
+export const ITEM = 'ITEM'
+export const BOSS = 'BOSS'
+export const CHARACTER_PROFILE = 'CHARACTER_PROFILE'
+export const ZONE = 'ZONE'
+//  db save
+export const SETUP_DB = 'SETUP_DB'
+export const ACHIEVEMENT_DB_SAVE = 'ACHIEVEMENT_DB_SAVE'
+export const AUCTION_DATA_STATUS_DB_SAVE = 'AUCTION_DATA_STATUS_DB_SAVE'
+export const ITEM_DB_SAVE = 'ITEM_DB_SAVE'
+export const BOSS_DB_SAVE = 'BOSS_DB_SAVE'
+export const CHARACTER_PROFILE_DB_SAVE = 'CHARACTER_PROFILE_DB_SAVE'
+export const ZONE_DB_SAVE = 'ZONE_DB_SAVE'
+//  settings
+export const SETUP_SETTINGS = 'SETUP_SETTINGS'
+export const SAVE_SETTINGS = 'SAVE_SETTINGS'

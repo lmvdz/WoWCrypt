@@ -1,12 +1,14 @@
-import * as types from '../mutation-types'
+import * as types from './types'
 import settings from 'electron-settings'
 
+//  state
 const state = {
   settings: {}
 }
 
+//  mutations
 const mutations = {
-  [types.SETUP_SETTINGS] (state) {
+  [types.SETUP] (state) {
     console.log('SETUP: SETTINGS ---')
     settings.defaults({
       settings: {
@@ -25,7 +27,7 @@ const mutations = {
     state.settings = load.settings
     console.log('SETUP: SETTINGS --- COMPLETED')
   },
-  [types.SAVE_SETTINGS] (state, save) {
+  [types.SAVE] (state, save) {
     console.log('SETTINGS: BEGIN SAVE')
     state.settings = save
     settings.setSync('settings', save)
@@ -33,7 +35,17 @@ const mutations = {
   }
 }
 
+//  actions
+//    functions
+const saveSettings = ({commit}, settings) => {
+  commit(types.SAVE, settings)
+}
+const actions = {
+  saveSettings
+}
+//  export
 export default {
   state,
-  mutations
+  mutations,
+  actions
 }

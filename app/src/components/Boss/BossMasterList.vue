@@ -13,7 +13,7 @@ import Boss from './Boss'
 
 export default {
   components: {
-      Boss
+    Boss
   },
   name: 'bossmasterlist',
   data () {

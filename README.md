@@ -1,14 +1,36 @@
 # WoW Crypt
 
 > World of Warcraft Armory Desktop Application
->>Vue.js & Blizzard's WoW Community API
+>>Blizzard's WoW Community API  
+>>HTML, CSS, and VueJS 2.0
 
-## Build Setup
+## What can I do
 
+<ul>
+  <li>Achievement Lookup</li>
+  <li><del>Auction House Data<del></li>
+  <li>Boss Lookup</li>
+  <li>Character Lookup</li>
+  <li>Item Lookup</li>
+</ul>
+
+## Downloads
+#### [WoWCrypt Downloads](https://github.com/XeonPowder/WoWCrypt/releases)
+
+## Running
+After the app has loaded you will get to the home page.  
+Before you can use the features you need to have an apikey to access the World of Warcraft API  
+via the home page you can navigate to subpages
+
+## API-Key registered with blizzard
 ```bash
-# apikey - you'll need this later
+# apikey (you can use this.)
+# 100 - Calls per second
+# 36,000 - Calls per hour
 zn2vjjju6qpav96datyqh78smc6s3wax
 ```
+
+## Build from Source Code
 
 ``` bash
 # install dependencies
@@ -30,7 +52,7 @@ npm run build
 # cleans the 'builds' folder
 npm run build:clean
 # build
-npm run build:[win32|darwin|mac|linux]
+npm run build:[win32|darwin|mas|linux]
 ```
 ``` bash
 # lint all JS/Vue component files in `app/src`
@@ -40,18 +62,6 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
-## Running
-After the app has loaded you will get to the home page.  
-On this page you can navigate to subpages
-
-## What can I do
-
-<ul>
-  <li>Achievement Lookup</li>
-  <li>~~Auction House Data~~</li>
-  <li>Boss Lookup</li>
-  <li>Character Lookup</li>
-</ul>
 
 ## Todo
 ```

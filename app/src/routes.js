@@ -20,6 +20,11 @@ export default [
     component: require('components/WowItem/WowItemLookup')
   },
   {
+    path: '/recipe',
+    name: 'recipe',
+    component: require('components/Recipe/RecipeLookup')
+  },
+  {
     path: '/boss',
     name: 'boss',
     component: require('components/Boss/BossLookup')

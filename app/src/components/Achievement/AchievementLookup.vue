@@ -77,7 +77,6 @@ export default {
         let x = this.achievements.slice()
         this.$store.dispatch('saveDatabase', ['ACHIEVEMENT_DB_SAVE', x])
       }
-      console.log(this.$store.getters.databases.achievements)
     },
     alreadyCached (achievement) {
       if ('' + achievement.id === this.achievementId) {

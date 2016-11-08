@@ -7,7 +7,8 @@ const state = {
     items: [],
     bosses: [],
     character_profiles: [],
-    zones: []
+    zones: [],
+    recipes: []
   }
 }
 const mutations = {
@@ -19,7 +20,8 @@ const mutations = {
     state.db.bosses = []
     state.db.character_profiles = []
     state.db.zones = []
-    console.log('SETUP: DATABASES --- SET & EMPTIED')
+    state.db.recipe = []
+    console.log('SETUP: DATABASES --- EMPTY')
     console.log('SETUP: DATABASE --- COMPLETED')
   },
   [types.ACHIEVEMENT_DB_SAVE] (state, dbToSave) {
@@ -39,6 +41,9 @@ const mutations = {
   },
   [types.ZONE_DB_SAVE] (state, dbToSave) {
     state.db.zones = dbToSave
+  },
+  [types.RECIPE_DB_SAVE] (state, dbToSave) {
+    state.db.recipes = dbToSave
   }
 }
 export default {

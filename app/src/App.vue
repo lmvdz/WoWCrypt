@@ -33,10 +33,17 @@
   .slide-fade-enter, .slide-fade-leave-active {
     opacity: 0;
   }
+  .notifications {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 250px;
+  }
 </style>
 
 <template>
   <div>
+    <notifications class="notifications"></notifications>
     <transition name="slide-fade" mode="out-in">
       <router-view>
       </router-view>
@@ -46,9 +53,13 @@
 
 <script>
   import store from 'src/vuex/store'
-
+  import Notifications from 'src/components/Notification/Notifications'
+  
   export default {
     store,
+    components: {
+      Notifications
+    },
     created () {
       this.$store.dispatch('setup')
     }

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <notifications class="notifications"></notifications>
     <h1>Settings</h1>
     <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
     <div class="container" id="apikey">
@@ -25,14 +24,12 @@
 import EInput from '../EInput/EInput'
 import EButtonDanger from '../EButton/EButtonDanger'
 import EButtonPrimary from '../EButton/EButtonPrimary'
-import Notifications from '../Notification/Notifications'
 
 export default {
   components: {
     EInput,
     EButtonDanger,
-    EButtonPrimary,
-    Notifications
+    EButtonPrimary
   },
   created () {
     this.loadSettings(this.$store.getters.settings)
@@ -76,12 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.notifications {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 250px;
-}
 #regionSelector {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;

@@ -53,6 +53,9 @@ h3{
       <div class="container">
         <router-link to="/item"><eButtonPrimary id="item" title="Item Lookup" ></eButtonPrimary></router-link>
       </div>
+      <div class="container">
+        <router-link to="/recipe"><eButtonPrimary id="recipe" title="Recipe Lookup" ></eButtonPrimary></router-link>
+      </div>
     </div>
   </div>
 </template>

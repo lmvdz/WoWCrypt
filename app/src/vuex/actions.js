@@ -43,6 +43,9 @@ export const saveDatabase = ({commit}, args) => {
     case 'ZONE_DB_SAVE':
       commit(types.ZONE_DB_SAVE, args[1])
       break
+    case 'RECIPE_DB_SAVE':
+      commit(types.RECIPE_DB_SAVE, args[1])
+      break
   }
 }
 //  api
@@ -72,6 +75,9 @@ export const modifyAPI = ({commit}, args) => {
       break
     case 'ZONE':
       commit(types.ZONE, args[1])
+      break
+    case 'RECIPE':
+      commit(types.RECIPE, args[1])
       break
     default:
       console.log('error: unknown request type')

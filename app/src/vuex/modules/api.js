@@ -185,6 +185,10 @@ const mutations = {
   [types.ZONE] (state, zoneId) {
     state.api.request = '/zone'
     state.api.requestArgs = [zoneId]
+  },
+  [types.RECIPE] (state, recipeId) {
+    state.api.request = '/recipe'
+    state.api.requestArgs = [recipeId]
   }
 }
 

@@ -7,7 +7,7 @@
 }
 #achievementTitle{
   text-align: left;
-  color: #d29d13;
+  color: #d29d11;
 }
 #achievementDescription{
   text-align: left;
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Container from '../Container/Container'
+import Container from '../../Container/Container'
 
 export default {
   components: {

@@ -72,19 +72,19 @@ li{
           </div>
         </ul>
       </div>
-      
+
     </container>
   </div>
 
 </template>
 
 <script>
-import Lookup from '../Lookup/Lookup'
-import Container from '../Container/Container'
+import EButtonDanger from '../../EButton/EButtonDanger'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
+import EInput from '../../EInput/EInput'
+import Lookup from '../../Lookup/Lookup'
+import Container from '../../Container/Container'
 import Character from './Character'
-import EButtonDanger from '../EButton/EButtonDanger'
-import EButtonPrimary from '../EButton/EButtonPrimary'
-import EInput from '../EInput/EInput'
 
 export default {
   components: {

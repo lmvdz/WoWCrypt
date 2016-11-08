@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Container from '../Container/Container'
+import Container from '../../Container/Container'
 export default {
   components: {
     Container

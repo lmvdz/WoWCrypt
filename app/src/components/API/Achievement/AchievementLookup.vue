@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import Container from '../Container/Container'
-import Lookup from '../Lookup/Lookup'
+import EButtonDanger from '../../EButton/EButtonDanger'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
+import EInput from '../../EInput/EInput'
+import Container from '../../Container/Container'
+import Lookup from '../../Lookup/Lookup'
 import Achievement from './Achievement'
-import EButtonDanger from '../EButton/EButtonDanger'
-import EButtonPrimary from '../EButton/EButtonPrimary'
-import EInput from '../EInput/EInput'
 
 export default {
   components: {

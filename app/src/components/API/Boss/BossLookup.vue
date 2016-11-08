@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Lookup from '../Lookup/Lookup'
-import Container from '../Container/Container'
-import EInput from '../EInput/EInput'
-import EButtonPrimary from '../EButton/EButtonPrimary'
-import EButtonDanger from '../EButton/EButtonDanger'
+import Lookup from '../../Lookup/Lookup'
+import Container from '../../Container/Container'
+import EInput from '../../EInput/EInput'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
+import EButtonDanger from '../../EButton/EButtonDanger'
 import Boss from './Boss'
 
 export default {

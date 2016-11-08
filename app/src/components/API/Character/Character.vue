@@ -118,8 +118,8 @@ import CharacterStats from './CharacterStats'
 import CharacterTalents from './CharacterTalents'
 import CharacterTitles from './CharacterTitles'
 import CharacterAudit from './CharacterAudit'
-import Container from '../Container/Container'
-import EButtonPrimary from '../EButton/EButtonPrimary'
+import Container from '../../Container/Container'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
 
 export default {
   components: {

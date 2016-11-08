@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import Lookup from '../Lookup/Lookup'
-import Container from '../Container/Container'
-import EButtonPrimary from '../EButton/EButtonPrimary'
-import EButtonDanger from '../EButton/EButtonDanger'
-import EInput from '../EInput/EInput'
+import Lookup from '../../Lookup/Lookup'
+import Container from '../../Container/Container'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
+import EButtonDanger from '../../EButton/EButtonDanger'
+import EInput from '../../EInput/EInput'
 import WowItem from './WowItem'
 
 export default {

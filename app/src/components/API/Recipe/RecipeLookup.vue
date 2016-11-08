@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import Container from '../Container/Container'
+import Lookup from '../../Lookup/Lookup'
+import EInput from '../../EInput/EInput'
+import EButtonPrimary from '../../EButton/EButtonPrimary'
+import Container from '../../Container/Container'
 import Recipe from './Recipe'
-import Lookup from '../Lookup/Lookup'
-import EInput from '../EInput/EInput'
-import EButtonPrimary from '../EButton/EButtonPrimary'
 
 export default {
   name: 'recipelookup',

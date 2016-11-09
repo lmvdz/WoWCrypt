@@ -1,28 +1,55 @@
-# WoW Crypt
+# Table of Contents
+* [Description](https://github.com/XeonPowder/WoWCrypt#description)
+* [Downloads](https://github.com/XeonPowder/WoWCrypt#downloads)
+* [Usage](https://github.com/XeonPowder/WoWCrypt#usage)
+* [API-Key](https://github.com/XeonPowder/WoWCrypt#api-key)
+* [Build Source Code](https://github.com/XeonPowder/WoWCrypt#build-source-code)
+* [Todo](https://github.com/XeonPowder/WoWCrypt#todo)
 
-> World of Warcraft Armory Desktop Application
->>Blizzard's WoW Community API  
->>HTML, CSS, and VueJS 2.0
+# Description
+> World of Warcraft Armory Desktop Application  
+> Blizzard's WoW Community API  
+> HTML, CSS, and VueJS 2.0
 
-## What can I do
+what is possible?
 
 <ul>
   <li>Achievement Lookup</li>
   <li><del>Auction House Data<del></li>
   <li>Boss Lookup</li>
   <li>Character Lookup</li>
+  <li>Guild Lookup</li>
   <li>Item Lookup</li>
+  <li>Mount Lookup</li>
+  <li>Pet Lookup</li>
+  <li>PvP Lookup</li>
+  <li>Quest Lookup</li>
+  <li>Realm Lookup</li>
+  <li>Recipe Lookup</li>
+  <li>Zone Lookup</li>
 </ul>
 
-## Downloads
-#### [WoWCrypt Downloads](https://github.com/XeonPowder/WoWCrypt/releases)
+---
 
-## Running
-After the app has loaded you will get to the home page.  
-Before you can use the features you need to have an apikey to access the World of Warcraft API  
-via the home page you can navigate to subpages
+# Downloads
+#### [___Releases (Binaries & Source Code)___](https://github.com/XeonPowder/WoWCrypt/releases)
 
-## API-Key registered with blizzard
+---
+
+# Usage
+#### 1.1
+Download the [binary](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) that fits your operating system and unzip.  
+-- or --  
+Grab the [source code](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) and [build](https://github.com/XeonPowder/WoWCrypt#build-from-source-code) the app yourself.
+#### 1.2
+
+Open the application  
+Go to the settings page  
+Input the [api-key](https://github.com/XeonPowder/WoWCrypt#api-key) and choose your region
+
+---
+
+# API-Key
 ```bash
 # apikey (you can use this.)
 # 100 - Calls per second
@@ -30,10 +57,16 @@ via the home page you can navigate to subpages
 zn2vjjju6qpav96datyqh78smc6s3wax
 ```
 
-## Build from Source Code
+---
 
+# Build Source Code
+#### 1.0
+
+Make sure you have
+[NodeJS](https://nodejs.org/en/)
+#### 1.1
 ``` bash
-# install dependencies
+# insde of the WoWCrypt directory, install dependencies
 npm install
 ```
 ``` bash
@@ -63,7 +96,7 @@ npm run lint
 npm run pack
 ```
 
-## Todo
+# Todo
 ```
 - implement full API
 ```

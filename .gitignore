@@ -1,6 +1,5 @@
 .DS_Store
 app/dist/*
-app/assets/
 app/apikey.txt
 builds/*
 build/*

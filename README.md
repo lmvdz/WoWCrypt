@@ -1,3 +1,9 @@
+<p align="center">
+![alt text](https://img.shields.io/badge/VueJS-2.x-00ffb3.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)
+<p>
+
+
 # Table of Contents
 * [Description](https://github.com/XeonPowder/WoWCrypt#description)
 * [Downloads](https://github.com/XeonPowder/WoWCrypt#downloads)
@@ -15,7 +21,7 @@ what is possible?
 
 <ul>
   <li>Achievement Lookup</li>
-  <li><del>Auction House Data<del></li>
+  <li>Auction House Data</li>
   <li>Boss Lookup</li>
   <li>Character Lookup</li>
   <li>Guild Lookup</li>
@@ -37,12 +43,11 @@ what is possible?
 ---
 
 # Usage
-#### 1.1
+#### 1.0
 Download the [binary](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) that fits your operating system and unzip.  
 -- or --  
 Grab the [source code](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) and [build](https://github.com/XeonPowder/WoWCrypt#build-from-source-code) the app yourself.
-#### 1.2
-
+#### 1.1
 Open the application  
 Go to the settings page  
 Input the [api-key](https://github.com/XeonPowder/WoWCrypt#api-key) and choose your region
@@ -95,11 +100,13 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
-
+---
 # Todo
 ```
-- implement full API
+- Implement full api
+- Add exciting features
 ```
 ---
 
-This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about electron-vue can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli).  
+Documentation about electron-vue can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).

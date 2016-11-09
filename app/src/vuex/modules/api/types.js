@@ -1,4 +1,3 @@
-//  api
 export const SETUP = 'api/SETUP'
 export const SET_KEY = 'api/SET_KEY'
 export const SET_REGION = 'api/SET_REGION'

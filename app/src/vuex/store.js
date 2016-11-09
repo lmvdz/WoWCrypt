@@ -5,11 +5,8 @@ import modules from './modules'
 
 Vue.use(Vuex)
 
-console.log(getters)
-console.log(modules)
-
 export default new Vuex.Store({
   getters,
   modules,
-  strict: true
+  strict: process.env.NODE_ENV !== 'production'
 })

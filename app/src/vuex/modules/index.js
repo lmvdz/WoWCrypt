@@ -2,11 +2,15 @@ const files = require.context('.', true, /\.js$/)
 const modules = {}
 
 files.keys().forEach((key) => {
-  console.log(key)
-  if (key === './index.js' || key.endsWith('types.js')) {
-    return
-  }
-  // "/^(.*\/)|(\.js)/g"
+  if (key === './index.js' ||
+      key.endsWith('types.js') ||
+      key.endsWith('actions.js') ||
+      key.endsWith('getters.js') ||
+      key.endsWith('mutations.js')) return
+  /*
+  regex to get filename w/o extension
+    "/^(.*\/)|(\.js)/g"
+  */
   modules[key.replace(/^(.*\/)|(\.js)/g, '')] = files(key).default
 })
 

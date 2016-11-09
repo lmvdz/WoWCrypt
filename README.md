@@ -1,5 +1,5 @@
 <p align="center">
-![](https://cloud.githubusercontent.com/assets/2179775/20132614/67b0bbb0-a629-11e6-9bad-42db0e60795a.png)
+![](https://cloud.githubusercontent.com/assets/2179775/20145553/23d9a9d2-a666-11e6-83a2-16ad10c6f6ea.png)
 <p>
 <p align="center">
 ![alt text](https://img.shields.io/badge/HTML-5-ffa800.svg?style=flat-square)

@@ -1,17 +1,20 @@
+![wowcrypt_title](https://cloud.githubusercontent.com/assets/2179775/20149679/fea22326-a677-11e6-98e2-53823da7759c.png)
 <p align="center">
-![](https://cloud.githubusercontent.com/assets/2179775/20145553/23d9a9d2-a666-11e6-83a2-16ad10c6f6ea.png)
+![electronvueicon128x128](https://cloud.githubusercontent.com/assets/2179775/20150645/89fc1e1e-a67c-11e6-8b5c-9d8ad642ea35.png)
+![wowcrypticon128x128](https://cloud.githubusercontent.com/assets/2179775/20150646/8a0c0392-a67c-11e6-8850-679ec2f1a2fa.png)
 <p>
 <p align="center">
-![alt text](https://img.shields.io/badge/HTML-5-ffa800.svg?style=flat-square)
-![alt text](https://img.shields.io/badge/CSS-3-a600ff.svg?style=flat-square)
-![alt text](https://img.shields.io/badge/VueJS-2.0.1-00ffb3.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/HTML-v5-ffa800.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/CSS-v3-a600ff.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/VueJS-v2.0.1-00c36b.svg?style=flat-square)
+![](https://img.shields.io/badge/electron-v1.3.1-00ffb3.svg?style=flat-square)
 <p>
 
 <p align="center">
-![alt text](https://img.shields.io/badge/vue--router-2.0.0-c2ae00.svg?style=flat-square)
-![alt text](https://img.shields.io/badge/vuex-2.0.0-c2ae00.svg?style=flat-square)
-![alt text](https://img.shields.io/badge/vue--electron-1.0.0-c2ae00.svg?style=flat-square)
-![alt text](https://img.shields.io/badge/vue--resource-1.0.3-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vue--router-v2.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vuex-v2.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vue--electron-v1.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vue--resource-v1.0.3-c2ae00.svg?style=flat-square)
 <p>
 <p align="center">
 ![alt text](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)
@@ -23,6 +26,7 @@
 * [___Usage___](https://github.com/XeonPowder/WoWCrypt#usage)
 * [___API-Key___](https://github.com/XeonPowder/WoWCrypt#api-key)
 * [___Build Source Code___](https://github.com/XeonPowder/WoWCrypt#build-source-code)
+* [___Issues & Fixes___](https://github.com/XeonPowder/WoWCrypt#issues--fixes)
 * [___Todo___](https://github.com/XeonPowder/WoWCrypt#todo)
 
 
@@ -62,8 +66,9 @@ Grab the [___source code___](https://github.com/XeonPowder/WoWCrypt#wowcrypt-dow
 Open the application  
 Go to the settings page  
 Input the [___api-key___](https://github.com/XeonPowder/WoWCrypt#api-key) and choose your region
-
-
+#### 1.2
+Begin using the application
+Any errors? (something doesn't work) [___open an issue___](https://github.com/XeonPowder/WoWCrypt/issues)
 
 <h1 align="center">API-Key</h1>
 ```bash
@@ -72,7 +77,6 @@ Input the [___api-key___](https://github.com/XeonPowder/WoWCrypt#api-key) and ch
 # 36,000 - Calls per hour
 zn2vjjju6qpav96datyqh78smc6s3wax
 ```
-
 
 <h1 align="center">Build Source Code</h1>
 #### 1.0
@@ -92,10 +96,6 @@ npm run dev
 # build electron app for production
 npm run build
 ```
-> Windows:
->>Run Command Prompt as Administrator  
->>--to fix: "Cannot create symlinks; skipping xxxxx platform"
-
 ``` bash
 # cleans the 'builds' folder
 npm run build:clean
@@ -110,6 +110,10 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
+<h1 align="center">Issues & Fixes</h1>
+#### Windows
+> "Cannot create symlinks; skipping xxxxx platform"
+>> Command Prompt > Run as Administrator
 
 <h1 align="center">Todo</h1>
 ```

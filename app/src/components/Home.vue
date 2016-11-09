@@ -11,6 +11,20 @@ h3{
 #error {
   color: #e04b4b;
 }
+#links-list {
+  width: 300px !important;
+  height: 275px !important;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+#links-list-item {
+  display: inline !important;
+  list-style-type: none !important;
+  float: left !important;
+  padding-left: 10px !important;
+  margin-left: 0 !important;
+}
 </style>
 <template>
   <div class="homepage">
@@ -21,38 +35,11 @@ h3{
       </div>
     </container>
     <container v-if="apiKeyIsSet()">
-      <div class="">
-        <container>
-          <div>
-            <router-link to="/achievement"><eButtonPrimary id="achievement" title="Achievement Lookup" ></eButtonPrimary></router-link>
-          </div>
-        </container>
-        <container>
-          <div>
-            <router-link to="/auction-house"><eButtonPrimary id="auction-house" title="Auction House" disabled=true></eButtonPrimary></router-link>
-          </div>
-        </container>
-        <container>
-          <div>
-            <router-link to="/boss"><eButtonPrimary id="boss" title="Boss Lookup" ></eButtonPrimary></router-link>
-          </div>
-        </container>
-        <container>
-          <div>
-            <router-link to="/character"><eButtonPrimary id="character" title="Character Lookup"></eButtonPrimary></router-link>
-          </div>
-        </container>
-        <container>
-          <div>
-            <router-link to="/item"><eButtonPrimary id="item" title="Item Lookup" ></eButtonPrimary></router-link>
-          </div>
-        </container>
-        <container>
-          <div>
-            <router-link to="/recipe"><eButtonPrimary id="recipe" title="Recipe Lookup" ></eButtonPrimary></router-link>
-          </div>
-        </container>
-      </div>
+      <ul id="links-list">
+        <li v-for="link in links" id="links-list-item">
+          <router-link :to="'/' + link.id"><eButtonPrimary :title="link.title" :disabled="link.disabled"></eButtonPrimary></router-link>
+        </li>
+      </ul>
     </container>
   </div>
 </template>
@@ -67,9 +54,14 @@ h3{
       Container
     },
     name: 'home',
+    data () {
+      return {
+        links: this.$store.getters.routes
+      }
+    },
     methods: {
       apiKeyIsSet () {
-        return this.$store.getters.apiData.apikey !== ''
+        return this.$store.getters.api.apikey !== ''
       }
     }
   }

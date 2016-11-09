@@ -36,13 +36,11 @@ import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
 import EButtonPrimary from '../../EButton/EButtonPrimary'
-import EButtonDanger from '../../EButton/EButtonDanger'
 import Boss from './Boss'
 
 export default {
   components: {
     EInput,
-    EButtonDanger,
     EButtonPrimary,
     Boss,
     Container,
@@ -61,7 +59,7 @@ export default {
     }
   },
   created () {
-    let x = this.$store.getters.databases.bosses
+    let x = this.$store.getters.db.bosses
     x = x.slice()
     this.bossDb = x
   },
@@ -76,16 +74,16 @@ export default {
       if (!isAlreadyInDb) {
         this.bossDb.push(boss)
         let x = this.bossDb.slice()
-        this.$store.dispatch('saveDatabase', ['BOSS_DB_SAVE', x])
+        this.$store.dispatch('saveDatabase', ['BOSS', x])
       }
     },
     getBossZoneName (boss) {
-      let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
       this.$store.dispatch('modifyAPI', ['ZONE', boss.zoneId])
-      x += this.$store.getters.apiData.request
-      x += '/' + this.$store.getters.apiData.requestArgs[0]
-      x += '?locale=' + this.$store.getters.apiData.locale
-      x += '&apikey=' + this.$store.getters.apiData.apikey
+      x += this.$store.getters.api.request
+      x += '/' + this.$store.getters.api.requestArgs[0]
+      x += '?locale=' + this.$store.getters.api.locale
+      x += '&apikey=' + this.$store.getters.api.apikey
       this.$http.get(x).then((response) => {
         boss.zoneName = response.data.name
       }, (response) => {
@@ -147,12 +145,13 @@ export default {
       }
     },
     getBoss (bossId) {
-      let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+      console.log('getting boss with id: ' + bossId)
+      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
       this.$store.dispatch('modifyAPI', ['BOSS', bossId])
-      x += this.$store.getters.apiData.request
-      x += '/' + this.$store.getters.apiData.requestArgs[0]
-      x += '?locale=' + this.$store.getters.apiData.locale
-      x += '&apikey=' + this.$store.getters.apiData.apikey
+      x += this.$store.getters.api.request
+      x += '/' + this.$store.getters.api.requestArgs[0]
+      x += '?locale=' + this.$store.getters.api.locale
+      x += '&apikey=' + this.$store.getters.api.apikey
       this.$http.get(x).then((response) => {
         this.boss = response.data
         this.boss.WoWHeadLink = 'http://www.wowhead.com/npc=' + this.boss.id

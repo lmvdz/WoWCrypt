@@ -82,7 +82,7 @@ export default {
     }
   },
   created () {
-    let x = this.$store.getters.databases.items
+    let x = this.$store.getters.db.items
     x = x.slice()
     this.itemDb = x
   },
@@ -166,16 +166,16 @@ export default {
       if (!isAlreadyInDb) {
         this.itemDb.push(item)
         let x = this.itemDb.slice()
-        this.$store.dispatch('saveDatabase', ['ITEM_DB_SAVE', x])
+        this.$store.dispatch('saveDatabase', ['ITEM', x])
       }
     },
     getItem (itemId) {
-      let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
       this.$store.dispatch('modifyAPI', ['ITEM', itemId])
-      x += this.$store.getters.apiData.request
-      x += '/' + this.$store.getters.apiData.requestArgs[0]
-      x += '?locale=' + this.$store.getters.apiData.locale
-      x += '&apikey=' + this.$store.getters.apiData.apikey
+      x += this.$store.getters.api.request
+      x += '/' + this.$store.getters.api.requestArgs[0]
+      x += '?locale=' + this.$store.getters.api.locale
+      x += '&apikey=' + this.$store.getters.api.apikey
       this.$http.get(x).then((response) => {
         this.item = response.data
         this.show = true

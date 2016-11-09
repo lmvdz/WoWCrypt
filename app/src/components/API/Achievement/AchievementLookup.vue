@@ -48,7 +48,7 @@ export default {
     }
   },
   created () {
-    let x = this.$store.getters.databases.achievements
+    let x = this.$store.getters.db.achievements
     x = x.slice()
     this.achievements = x
   },
@@ -79,7 +79,7 @@ export default {
       if (!isAlreadyInDb) {
         this.achievements.push(achievement)
         let x = this.achievements.slice()
-        this.$store.dispatch('saveDatabase', ['ACHIEVEMENT_DB_SAVE', x])
+        this.$store.dispatch('saveDatabase', ['ACHIEVEMENT', x])
       }
     },
     alreadyCached (achievement) {
@@ -116,12 +116,12 @@ export default {
       }
     },
     getAchievement (achievementId) {
-      let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
       this.$store.dispatch('modifyAPI', ['ACHIEVEMENT', achievementId])
-      x += this.$store.getters.apiData.request
-      x += '/' + this.$store.getters.apiData.requestArgs[0]
-      x += '?locale=' + this.$store.getters.apiData.locale
-      x += '&apikey=' + this.$store.getters.apiData.apikey
+      x += this.$store.getters.api.request
+      x += '/' + this.$store.getters.api.requestArgs[0]
+      x += '?locale=' + this.$store.getters.api.locale
+      x += '&apikey=' + this.$store.getters.api.apikey
       this.$http.get(x).then((response) => {
         this.achievement = response.data
         this.show = true

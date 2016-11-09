@@ -109,7 +109,7 @@ export default {
     }
   },
   created () {
-    let x = this.$store.getters.databases.character_profiles
+    let x = this.$store.getters.db.character_profiles
     x = x.slice()
     this.characters = x
   },
@@ -280,7 +280,7 @@ export default {
       if (!isAlreadyInDb) {
         this.characters.push(character)
         let x = this.characters.slice()
-        this.$store.dispatch('saveDatabase', ['CHARACTER_PROFILE_DB_SAVE', x])
+        this.$store.dispatch('saveDatabase', ['CHARACTER_PROFILE', x])
       }
     },
     checkForChange () {
@@ -311,12 +311,12 @@ export default {
     },
     getCharacter (characterRealm, characterName) {
       if (characterRealm !== undefined && characterName !== undefined) {
-        let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+        let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
         this.$store.dispatch('modifyAPI', ['CHARACTER_PROFILE', characterRealm, characterName])
-        x += this.$store.getters.apiData.request
-        x += '/' + this.$store.getters.apiData.requestArgs[0] + '/' + this.$store.getters.apiData.requestArgs[1]
-        x += '?locale=' + this.$store.getters.apiData.locale
-        x += '&apikey=' + this.$store.getters.apiData.apikey
+        x += this.$store.getters.api.request
+        x += '/' + this.$store.getters.api.requestArgs[0] + '/' + this.$store.getters.api.requestArgs[1]
+        x += '?locale=' + this.$store.getters.api.locale
+        x += '&apikey=' + this.$store.getters.api.apikey
         this.$http.get(x).then((response) => {
           this.character = response.data
           this.show = true

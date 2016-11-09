@@ -54,12 +54,12 @@ export default {
   methods: {
     getAuctionData (realmName) {
       console.log(realmName)
-      let x = this.$store.getters.apiData.https + this.$store.getters.apiData.region + this.$store.getters.apiData.domain
+      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
       this.$store.dispatch('modifyAPI', ['AUCTION_DATA_STATUS', realmName])
-      x += this.$store.getters.apiData.request
-      x += '/' + this.$store.getters.apiData.requestArgs[0]
-      x += '?locale=' + this.$store.getters.apiData.locale
-      x += '&apikey=' + this.$store.getters.apiData.apikey
+      x += this.$store.getters.api.request
+      x += '/' + this.$store.getters.api.requestArgs[0]
+      x += '?locale=' + this.$store.getters.api.locale
+      x += '&apikey=' + this.$store.getters.api.apikey
       console.log(x)
       this.$http.get(x).then((response) => {
         console.log('yay')

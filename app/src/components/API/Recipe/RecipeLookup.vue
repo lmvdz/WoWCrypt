@@ -8,18 +8,18 @@
         </div>
       </container>
       <eButtonPrimary title="Search" id="search" @clicked="getRecipe(recipeId)"></eButtonPrimary>
-      <recipe v-if="show" :recipe="recipe"><recipe>
       <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
       <h3 v-if="error" id="error">{{recipe.error}}</h3>
+      <recipe v-if="show" :recipe="recipe"><recipe>
     </div>
   </lookup>
 </template>
 
 <script>
 import Lookup from '../../Lookup/Lookup'
+import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
 import EButtonPrimary from '../../EButton/EButtonPrimary'
-import Container from '../../Container/Container'
 import Recipe from './Recipe'
 
 export default {
@@ -42,7 +42,7 @@ export default {
     }
   },
   created () {
-    let x = this.$store.getters.databases.recipes
+    let x = this.$store.getters.db.recipes
     x = x.slice()
     this.recipeDb = x
   },
@@ -77,7 +77,7 @@ export default {
       if (!this.isAlreadyInDb(db, recipe)) {
         db.push(recipe)
         let x = db.slice()
-        this.$store.dispatch('saveDatabase', ['RECIPE_DB_SAVE', x])
+        this.$store.dispatch('saveDatabase', ['RECIPE', x])
         return true
       }
       return false
@@ -103,7 +103,7 @@ export default {
         if (this.recipe.error === undefined) {
           this.error = false
           this.show = true
-        } else {
+        } else if (this.recipe.error !== undefined) {
           this.error = true
           this.show = false
         }
@@ -120,7 +120,7 @@ export default {
       }
     },
     getRecipe () {
-      let y = this.$store.getters.apiData
+      let y = this.$store.getters.api
       let x = y.https + y.region + y.domain
       this.$store.dispatch('modifyAPI', ['RECIPE', this.recipeId])
       x += y.request
@@ -134,7 +134,7 @@ export default {
         this.purify(this.recipe)
       }, (response) => {
         if (response.status === 404) {
-          this.recipe = {'error': 'Invalid Achievemnt ID: ' + this.recipeId, 'id': this.recipeId}
+          this.recipe = {'error': 'Invalid Recipe ID: ' + this.recipeId, 'id': this.recipeId}
           this.error = true
           this.show = false
           if (this.tryToPushToDatabase(this.recipeDb, this.recipe)) {

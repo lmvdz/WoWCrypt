@@ -73,8 +73,8 @@ export default {
       }
       this.$store.dispatch('addNotification', notify)
       //  set the api key and region
-      this.$store.dispatch('modifyAPI', ['SET_API_KEY', this.apiKey])
-      this.$store.dispatch('modifyAPI', ['SET_API_REGION', this.region])
+      this.$store.dispatch('modifyAPI', ['SET_KEY', this.apiKey])
+      this.$store.dispatch('modifyAPI', ['SET_REGION', this.region])
     }
   }
 }

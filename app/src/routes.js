@@ -1,12 +1,8 @@
-import api from './route/api'
-import nonapi from './route/nonapi'
+const files = require.context('./routes', false, /\.js$/)
+let links = []
 
-const EXPORT = (...args) => {
-  let compiled = []
-  for (var i = 0; i < args.length; i++) {
-    compiled = compiled.concat(args[i])
-  }
-  return compiled
-}
+files.keys().forEach((key) => {
+  links = links.concat(files(key).default)
+})
 
-export default EXPORT(nonapi, api)
+export default links

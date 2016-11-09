@@ -1,18 +1,32 @@
 <p align="center">
-![alt text](https://img.shields.io/badge/VueJS-2.x-00ffb3.svg?style=flat-square)
+![](https://cloud.githubusercontent.com/assets/2179775/20132614/67b0bbb0-a629-11e6-9bad-42db0e60795a.png)
+<p>
+<p align="center">
+![alt text](https://img.shields.io/badge/HTML-5-ffa800.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/CSS-3-a600ff.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/VueJS-2.0.1-00ffb3.svg?style=flat-square)
+<p>
+
+<p align="center">
+![alt text](https://img.shields.io/badge/vue--router-2.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vuex-2.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vue--electron-1.0.0-c2ae00.svg?style=flat-square)
+![alt text](https://img.shields.io/badge/vue--resource-1.0.3-c2ae00.svg?style=flat-square)
+<p>
+<p align="center">
 ![alt text](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)
 <p>
 
+<h1 align="center">Table of Contents</h1>
+* [___Description___](https://github.com/XeonPowder/WoWCrypt#description)
+* [___Downloads___](https://github.com/XeonPowder/WoWCrypt#downloads)
+* [___Usage___](https://github.com/XeonPowder/WoWCrypt#usage)
+* [___API-Key___](https://github.com/XeonPowder/WoWCrypt#api-key)
+* [___Build Source Code___](https://github.com/XeonPowder/WoWCrypt#build-source-code)
+* [___Todo___](https://github.com/XeonPowder/WoWCrypt#todo)
 
-# Table of Contents
-* [Description](https://github.com/XeonPowder/WoWCrypt#description)
-* [Downloads](https://github.com/XeonPowder/WoWCrypt#downloads)
-* [Usage](https://github.com/XeonPowder/WoWCrypt#usage)
-* [API-Key](https://github.com/XeonPowder/WoWCrypt#api-key)
-* [Build Source Code](https://github.com/XeonPowder/WoWCrypt#build-source-code)
-* [Todo](https://github.com/XeonPowder/WoWCrypt#todo)
 
-# Description
+<h1 align="center">Description</h1>
 > World of Warcraft Armory Desktop Application  
 > Blizzard's WoW Community API  
 > HTML, CSS, and VueJS 2.0
@@ -35,26 +49,23 @@ what is possible?
   <li>Zone Lookup</li>
 </ul>
 
----
-
-# Downloads
+<h1 align="center">Downloads</h1>
 #### [___Releases (Binaries & Source Code)___](https://github.com/XeonPowder/WoWCrypt/releases)
 
----
 
-# Usage
+<h1 align="center">Usage</h1>
 #### 1.0
-Download the [binary](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) that fits your operating system and unzip.  
+Download the [___binary___](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) that fits your operating system and unzip.  
 -- or --  
-Grab the [source code](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) and [build](https://github.com/XeonPowder/WoWCrypt#build-from-source-code) the app yourself.
+Grab the [___source code___](https://github.com/XeonPowder/WoWCrypt#wowcrypt-downloads) and [___build___](https://github.com/XeonPowder/WoWCrypt#build-from-source-code) the app yourself.
 #### 1.1
 Open the application  
 Go to the settings page  
-Input the [api-key](https://github.com/XeonPowder/WoWCrypt#api-key) and choose your region
+Input the [___api-key___](https://github.com/XeonPowder/WoWCrypt#api-key) and choose your region
 
----
 
-# API-Key
+
+<h1 align="center">API-Key</h1>
 ```bash
 # apikey (you can use this.)
 # 100 - Calls per second
@@ -62,13 +73,12 @@ Input the [api-key](https://github.com/XeonPowder/WoWCrypt#api-key) and choose y
 zn2vjjju6qpav96datyqh78smc6s3wax
 ```
 
----
 
-# Build Source Code
+<h1 align="center">Build Source Code</h1>
 #### 1.0
 
 Make sure you have
-[NodeJS](https://nodejs.org/en/)
+[___NodeJS___](https://nodejs.org/en/)
 #### 1.1
 ``` bash
 # insde of the WoWCrypt directory, install dependencies
@@ -100,13 +110,12 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
----
-# Todo
+
+<h1 align="center">Todo</h1>
 ```
 - Implement full api
 - Add exciting features
 ```
 ---
 
-This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli).  
-Documentation about electron-vue can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+This project was generated from [___electron-vue___](https://github.com/SimulatedGREG/electron-vue) ([___Documentation___](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html)) using [___vue-cli___](https://github.com/vuejs/vue-cli).  

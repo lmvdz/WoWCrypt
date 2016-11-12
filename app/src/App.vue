@@ -77,13 +77,14 @@
         }
       })
       this.$router.afterEach((to, from) => {
-        // should the progress bar finish quickly after page loaded?
         this.$Progress.finish()
       })
     },
     methods: {
       startReroute (to, from, next) {
+        // uncomment to use vue-router meta style
         // to.meta.progress !== undefined ? this.$Progress.parseMeta(to.meta.progress) : null
+        // randomizes the style of the progress bar based on parameters
         this.$Progress.randomize({
           color: {r: {min: 0, max: 255}, g: {min: 0, max: 255}, b: {min: 0, max: 255}},
           fail: {r: {min: 0, max: 255}, g: {min: 0, max: 255}, b: {min: 0, max: 255}},

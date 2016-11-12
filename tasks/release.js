@@ -5,7 +5,8 @@ const packager = require('electron-packager')
 
 if (process.env.PLATFORM_TARGET === 'clean') {
   require('del').sync(['builds/*', '!.gitkeep'])
-  console.log('\x1b[33m`builds` directory cleaned.\n\x1b[0m')
+  require('del').sync(['dist/*', '!.gitkeep'])
+  console.log('\x1b[33m`builds` && `dist` directories cleaned.\n\x1b[0m')
 } else pack()
 
 /**

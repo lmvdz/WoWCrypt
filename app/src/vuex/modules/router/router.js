@@ -10,8 +10,8 @@ const state = {
     {'id': 'pet', 'title': 'Pet', 'disabled': false},
     {'id': 'pvp', 'title': 'PvP', 'disabled': false},
     {'id': 'quest', 'title': 'Quest', 'disabled': false},
-    {'id': 'realm', 'title': 'Realm', 'disabled': false},
-    {'id': 'zone', 'title': 'Zone', 'disabled': false}
+    {'id': 'zone', 'title': 'Zone', 'disabled': false},
+    {'id': 'realm', 'title': 'Realm', 'disabled': false}
   ]
 }
 

@@ -64,9 +64,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .notification {
   border: solid #bebaba 1px;
   margin-bottom: 10px;
+}
+#button {
+  position: relative;
+  right: 0px;
+  top: 0px;
 }
 </style>

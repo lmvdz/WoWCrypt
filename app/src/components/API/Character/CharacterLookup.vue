@@ -325,8 +325,11 @@ export default {
           console.log(this.character.gender)
         }, (response) => {
           if (response.status === 404) {
-            this.character = {'error': 'Character Lookup Failed: ' + this.characterName + ' - ' +
-                              this.characterRealm, 'name': this.characterName, 'realm': this.characterRealm}
+            this.character = {
+              'error': 'Character Lookup Failed: ' + this.characterName + ' - ' + this.characterRealm,
+              'name': this.characterName,
+              'realm': this.characterRealm
+            }
             this.show = false
             this.error = this.lastSearchWasError = true
             let isAlreadyInDb = false

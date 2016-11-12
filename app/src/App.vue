@@ -47,6 +47,7 @@
     <transition name="slide-fade" mode="out-in">
       <router-view></router-view>
     </transition>
+    <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
@@ -59,8 +60,41 @@
     components: {
       Notifications
     },
+    mounted () {
+      this.$Progress.finish()
+    },
     created () {
+      this.$Progress.start()
       this.$store.dispatch('setup')
+      this.$router.beforeEach((to, from, next) => {
+        if (this.$Progress.quickHide()) {
+          let this2 = this
+          setTimeout(() => {
+            this2.startReroute(to, from, next)
+          }, 100)
+        } else {
+          this.startReroute(to, from, next)
+        }
+      })
+      this.$router.afterEach((to, from) => {
+        // should the progress bar finish quickly after page loaded?
+        this.$Progress.finish()
+      })
+    },
+    methods: {
+      startReroute (to, from, next) {
+        // to.meta.progress !== undefined ? this.$Progress.parseMeta(to.meta.progress) : null
+        this.$Progress.randomize({
+          color: {r: {min: 0, max: 255}, g: {min: 0, max: 255}, b: {min: 0, max: 255}},
+          fail: {r: {min: 0, max: 255}, g: {min: 0, max: 255}, b: {min: 0, max: 255}},
+          thickness: {min: 3, max: 7, suffix: 'px'},
+          location: ['top', 'left'],
+          inverse: [true, false],
+          transition: {time: {min: 0.5, max: 1.75}, opacity: {min: 0.7, max: 1.4}}
+        })
+        this.$Progress.start()
+        next()
+      }
     }
   }
 </script>

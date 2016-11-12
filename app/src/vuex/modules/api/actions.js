@@ -2,6 +2,7 @@ import * as types from './types'
 
 const actions = {
   modifyAPI ({commit}, args) {
+    let requestArgs
     switch (args[0]) {
       case 'SET_REGION':
         commit(types.SET_REGION, args[1])
@@ -22,7 +23,7 @@ const actions = {
         commit(types.BOSS, args[1])
         break
       case 'CHARACTER_PROFILE':
-        let requestArgs = args[1] + ',' + args[2]
+        requestArgs = args[1] + ',' + args[2]
         commit(types.CHARACTER_PROFILE, requestArgs)
         break
       case 'ZONE':
@@ -30,6 +31,10 @@ const actions = {
         break
       case 'RECIPE':
         commit(types.RECIPE, args[1])
+        break
+      case 'Guild':
+        requestArgs = args[1] + ',' + args[2]
+        commit(types.RECIPE, requestArgs)
         break
       default:
         console.log('error: unknown request type')

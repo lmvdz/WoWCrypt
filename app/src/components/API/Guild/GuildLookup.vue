@@ -45,7 +45,6 @@ export default {
       guild: {},
       show: false,
       error: false,
-      lastSearchWasError: false,
       inputHasNumber: false
     }
   },
@@ -127,7 +126,30 @@ export default {
       }
     },
     getGuild (realm, name) {
-
+      if (realm !== undefined && name !== undefined) {
+        let y = this.$store.getters.api
+        let x = y.https + y.region + y.domain
+        this.$store.dispatch('modifyAPI', ['GUILD', realm, name])
+        x += y.request
+        x += '/' + y.requestArgs[0] + '/' + y.requestArgs[1]
+        x += '?locale=' + y.locale
+        x += '&apikey=' + y.apikey
+        this.$http.get(x).then((response) => {
+          this.guild = response.data
+          this.show = true
+          this.purify(this.guild)
+        }, (response) => {
+          if (response.status === 404) {
+            this.guild = {'error': 'Guild Lookup Failed: ' + realm + ' - ' + name, 'name': name, 'realm': realm}
+            this.show = false
+            this.error = true
+          } else if (response.status === 403) {
+            this.guild = {'error': 'API Request Failed, check Settings'}
+            this.error = true
+            this.show = false
+          }
+        })
+      }
     }
   }
 }

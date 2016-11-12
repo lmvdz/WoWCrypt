@@ -1,10 +1,87 @@
 'use strict'
 
 const electron = require('electron')
-const path = require('path')
+const {Menu} = require('electron')
 const app = electron.app
+const path = require('path')
 const BrowserWindow = electron.BrowserWindow
 
+let menuTemplate = [
+  {
+    label: "WoW Crypt",
+    submenu: [
+      { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+      { type: "separator" },
+      { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+    ]
+  }, {
+    label: "Edit",
+    submenu: [
+      { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+      { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+      { type: "separator" },
+      { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+      { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+      { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+      { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+    ]
+  }, {
+    label: "View",
+    submenu: [
+      {
+        label: "Reload",
+        accelerator: "CmdOrCtrl+R",
+        click (item, focusedWindow) {
+          if (focusedWindow) focusedWindow.reload()
+        }
+      }, {
+        label: 'Toggle Developer Tools',
+        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+        click (item, focusedWindow) {
+          if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+        }
+      }, {
+        type: 'separator'
+      }, {
+        role: 'resetzoom'
+      }, {
+        role: 'zoomin'
+      }, {
+        role: 'zoomout'
+      }, {
+        type: 'separator'
+      }, {
+        role: 'togglefullscreen'
+      }
+    ]
+  }, {
+    role: 'Help',
+    submenu: [
+      {
+        label: 'Learn More',
+        click () { require('electron').shell.openExternal('http://github.com/XeonPowder/WoWCrypt') }
+      }
+    ]
+  }
+]
+let mainWindowTemplate = {
+  title: 'WoW Crypt',
+  frame: true,
+  minHeight: 600,
+  minWidth: 800,
+  center: true,
+  titleBarStyle: 'hidden',
+  show: false
+}
+let loadingScreenTemplate = {
+  title: 'WoW Crypt',
+  frame: false,
+  minHeight: 600,
+  minWidth: 800,
+  center: true,
+  titleBarStyle: 'hidden',
+  show: false
+}
 let mainWindow
 let loadingScreen
 let config = {}
@@ -18,20 +95,78 @@ if (process.env.NODE_ENV === 'development') {
   config.url = `file://${__dirname}/dist/index.html`
   config.loadingURI = `file://${__dirname}/dist/loading.html`
 }
-
+function darwin () {
+  menuTemplate.unshift(
+    {
+      label: app.getName(),
+      submenu: [
+        {
+          role: 'about'
+        }, {
+          type: 'separator'
+        }, {
+          role: 'services',
+          submenu: []
+        }, {
+          type: 'separator'
+        }, {
+          role: 'hide'
+        }, {
+          role: 'hideothers'
+        }, {
+          role: 'unhide'
+        }, {
+          type: 'separator'
+        }, {
+          role: 'quit'
+        }
+      ]
+    }
+  )
+  // Edit menu.
+  menuTemplate[1].submenu.push(
+    {
+      type: 'separator'
+    }, {
+      label: 'Speech',
+      submenu: [
+        {
+          role: 'startspeaking'
+        }, {
+          role: 'stopspeaking'
+        }
+      ]
+    }
+  )
+   // Window menu.
+   menuTemplate[3].submenu = [
+     {
+       label: 'Close',
+       accelerator: 'CmdOrCtrl+W',
+       role: 'close'
+     }, {
+       label: 'Minimize',
+       accelerator: 'CmdOrCtrl+M',
+       role: 'minimize'
+     }, {
+       label: 'Zoom',
+       role: 'zoom'
+     }, {
+       type: 'separator'
+     }, {
+       label: 'Bring All to Front',
+       role: 'front'
+     }
+   ]
+}
 function createWindow () {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
-    title: 'WoW Crypt',
-    frame: true,
-    minHeight: 600,
-    minWidth: 800,
-    center: true,
-    titleBarStyle: 'hidden',
-    show: false
-  })
+  process.platform === 'darwin' ? darwin() : null
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate))
+
+  mainWindow = new BrowserWindow(mainWindowTemplate)
 
   mainWindow.loadURL(config.url)
 
@@ -62,15 +197,7 @@ function createWindow () {
 }
 
 function createLoadingScreen () {
-  loadingScreen = new BrowserWindow({
-    title: 'WoW Crypt',
-    frame: false,
-    minHeight: 600,
-    minWidth: 800,
-    center: true,
-    titleBarStyle: 'hidden',
-    show: false
-  })
+  loadingScreen = new BrowserWindow(loadingScreenTemplate)
 
   loadingScreen.loadURL(config.loadingURI)
 

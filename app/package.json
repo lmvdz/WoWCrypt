@@ -4,15 +4,17 @@
   "name": "WoWCrypt",
   "productName": "WoW Crypt",
   "description": "WoW Armory Desktop",
-  "version": "0.0.2",
+  "version": "0.0.4",
+  "license": "MIT",
   "main": "electron.js",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/XeonPowder/WoWCrypt.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XeonPowder/WoWCrypt.git"
   },
   "dependencies": {
-    "vue": "^2.0.1",
+    "vue": "^2.0.5",
     "vue-electron": "^1.0.0",
+    "vue-progressbar": "^0.7.1",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0"

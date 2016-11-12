@@ -1,6 +1,6 @@
 {
   "name": "WoWCrypt",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "WoW Armory Desktop",
   "author": "Lars van der Zande <lmvdzd@gmail.com>",
   "homepage": "https://github.com/XeonPowder/WoWCrypt",
@@ -8,21 +8,33 @@
   "directories": {
     "output": "builds"
   },
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/XeonPowder/WoWCrypt.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XeonPowder/WoWCrypt.git"
+  },
+  "build": {
+    "appId": "com.xeonpowder.wowcrypt",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "iconUrl": "https://www.dropbox.com/s/p03zj0x9qdk04lc/icon.ico?dl=1"
+    }
+  },
+  "directories": {
+    "buildResources": "./app/assets"
   },
   "scripts": {
     "build": "node tasks/release.js",
     "build:clean": "cross-env PLATFORM_TARGET=clean node tasks/release.js",
-    "build:darwin": "cross-env PLATFORM_TARGET=darwin node tasks/release.js",
-    "build:linux": "cross-env PLATFORM_TARGET=linux node tasks/release.js",
+    "build:darwin": "cross-env PLATFORM_TARGET=darwin node tasks/release.js && build --mac",
+    "build:linux": "cross-env PLATFORM_TARGET=linux node tasks/release.js && build --linux deb tar.xz",
     "build:mas": "cross-env PLATFORM_TARGET=mas node tasks/release.js",
-    "build:win32": "cross-env PLATFORM_TARGET=win32 node tasks/release.js",
+    "build:win32": "cross-env PLATFORM_TARGET=win32 node tasks/release.js && build --win --ia32 ",
     "dev": "node tasks/runner.js",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter app",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix app",
-    "pack": "cross-env NODE_ENV=production webpack -p --progress --colors",
+    "pack": "cross-env NODE_ENV=production webpack -p --progress --colors && build --dir",
     "postinstall": "npm run lint:fix && cd app && npm install",
     "vue:route": "node tasks/vue/route.js",
     "vuex:module": "node tasks/vuex/module.js"
@@ -35,34 +47,34 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.6.1",
     "copy-webpack-plugin": "^4.0.0",
-    "cross-env": "^1.0.7",
-    "css-loader": "^0.23.1",
+    "cross-env": "^3.1.3",
+    "css-loader": "^0.25.0",
     "del": "^2.2.1",
     "devtron": "^1.1.0",
     "electron": "^1.3.1",
-    "electron-builder": "^7.18.0",
-    "electron-devtools-installer": "^1.1.4",
+    "electron-builder": "^8.4.1",
+    "electron-devtools-installer": "^2.0.1",
     "electron-packager": "^8.0.0",
     "electron-rebuild": "^1.1.3",
     "electron-settings": "^2.2.2",
-    "eslint": "^2.10.2",
-    "eslint-config-standard": "^5.1.0",
+    "eslint": "^3.10.0",
+    "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.5",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-html": "^1.3.0",
-    "eslint-plugin-promise": "^1.0.8",
-    "eslint-plugin-standard": "^1.3.2",
+    "eslint-plugin-promise": "^3.3.2",
+    "eslint-plugin-standard": "^2.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.16.1",
     "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "tree-kill": "^1.1.0",
     "url-loader": "^0.5.7",
-    "vue-hot-reload-api": "^1.3.2",
+    "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.2",
-    "vue-loader": "^9.5.1",
+    "vue-loader": "^9.9.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"

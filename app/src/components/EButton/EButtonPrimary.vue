@@ -56,8 +56,9 @@ export default {
     background: #212222;
     color: #ff0000;
     border: solid #ff0000 1px;
-  }
+  } 
   .ebutton-primary:hover:disabled {
+    cursor: default;
     border: solid #ff0000 1px;
     background: #000000;
     -webkit-box-shadow: 0px 1px 3px #000000;

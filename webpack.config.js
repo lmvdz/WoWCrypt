@@ -79,6 +79,9 @@ let config = {
       title: settings.name,
       inject: false
     }),
+    new CopyWebpackPlugin([
+      {from: 'app/assets', to: 'assets'}
+    ]),
     new webpack.NoErrorsPlugin()
   ],
   output: {

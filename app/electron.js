@@ -70,7 +70,6 @@ let mainWindowTemplate = {
   minHeight: 600,
   minWidth: 800,
   center: true,
-  titleBarStyle: 'hidden',
   show: false
 }
 let loadingScreenTemplate = {
@@ -79,7 +78,6 @@ let loadingScreenTemplate = {
   minHeight: 600,
   minWidth: 800,
   center: true,
-  titleBarStyle: 'hidden',
   show: false
 }
 let mainWindow
@@ -96,33 +94,6 @@ if (process.env.NODE_ENV === 'development') {
   config.loadingURI = `file://${__dirname}/dist/loading.html`
 }
 function darwin () {
-  menuTemplate.unshift(
-    {
-      label: app.getName(),
-      submenu: [
-        {
-          role: 'about'
-        }, {
-          type: 'separator'
-        }, {
-          role: 'services',
-          submenu: []
-        }, {
-          type: 'separator'
-        }, {
-          role: 'hide'
-        }, {
-          role: 'hideothers'
-        }, {
-          role: 'unhide'
-        }, {
-          type: 'separator'
-        }, {
-          role: 'quit'
-        }
-      ]
-    }
-  )
   // Edit menu.
   menuTemplate[1].submenu.push(
     {
@@ -138,26 +109,6 @@ function darwin () {
       ]
     }
   )
-   // Window menu.
-   menuTemplate[3].submenu = [
-     {
-       label: 'Close',
-       accelerator: 'CmdOrCtrl+W',
-       role: 'close'
-     }, {
-       label: 'Minimize',
-       accelerator: 'CmdOrCtrl+M',
-       role: 'minimize'
-     }, {
-       label: 'Zoom',
-       role: 'zoom'
-     }, {
-       type: 'separator'
-     }, {
-       label: 'Bring All to Front',
-       role: 'front'
-     }
-   ]
 }
 function createWindow () {
   /**

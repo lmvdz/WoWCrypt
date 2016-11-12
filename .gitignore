@@ -2,7 +2,7 @@
 app/dist/*
 builds/*
 build/*
-dist/*
+dist
 node_modules/*
 npm-debug.log
 npm-debug.log.*

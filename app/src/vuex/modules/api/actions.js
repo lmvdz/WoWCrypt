@@ -1,6 +1,9 @@
 import * as types from './types'
 
 const actions = {
+  callAPI ({commit}, args) {
+    commit(types.CALL)
+  },
   modifyAPI ({commit}, args) {
     let requestArgs
     switch (args[0]) {
@@ -22,9 +25,9 @@ const actions = {
       case 'BOSS':
         commit(types.BOSS, args[1])
         break
-      case 'CHARACTER_PROFILE':
+      case 'CHARACTER':
         requestArgs = args[1] + ',' + args[2]
-        commit(types.CHARACTER_PROFILE, requestArgs)
+        commit(types.CHARACTER, requestArgs)
         break
       case 'ZONE':
         commit(types.ZONE, args[1])

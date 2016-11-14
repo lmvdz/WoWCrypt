@@ -5,24 +5,22 @@
 </style>
 
 <template>
-  <container>
+  <lookup title="Auction House Data Status">
     <div>
-      <h1>Auction House Data Status:</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
+      <h3>Realm Name</h3>
       <eInput @enter="getAuctionData(realmName)" v-model="realmName" placeholder="Realm"></eInput>
-      <eButtonPrimary title="Search" id="search" @clicked="getAuctionData(realmName)"></eButtonPrimary>
+      <a class="link primary" @click="getAuctionData(realmName)">Search</a>
       <transition name="slide-fade">
         <div v-if="show">
           <auctions auctions="auctionData"></auctions>
         </div>
       </transition>
     </div>
-  </container>
+  </lookup>
 </template>
 
 <script>
-import EButtonDanger from '../../EButton/EButtonDanger'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
+import Lookup from '../../Lookup/Lookup'
 import EInput from '../../EInput/EInput'
 import Container from '../../Container/Container'
 import Auctions from './Auctions'
@@ -30,8 +28,7 @@ import Auctions from './Auctions'
 export default {
   components: {
     Container,
-    EButtonDanger,
-    EButtonPrimary,
+    Lookup,
     EInput,
     Auctions
   },

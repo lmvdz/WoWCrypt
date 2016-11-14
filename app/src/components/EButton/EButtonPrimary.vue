@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button :disabled="disabled" @click="clicked" class="ebutton-primary">{{title}}</button>
+    <button class="ebutton-primary" :style="style" :disabled="disabled" @click="clicked">{{title}}</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ebutton-primary',
-  props: ['title', 'disabled'],
+  props: ['title', 'disabled', 'style'],
   methods: {
     clicked () {
       this.$emit('clicked')
@@ -18,10 +18,10 @@ export default {
 
 <style scoped>
   .ebutton-primary {
+    width: auto !important;
     font-family: Lato;
     font-weight: 900;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0 5px 0 !important;
     cursor: pointer;
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #5b9395, #2cb875);
@@ -35,7 +35,6 @@ export default {
     text-shadow: 1px 1px 2px #000000;
     color: #ffffff;
     font-size: 16px;
-    padding: 10px 20px 10px 20px;
     border: solid #000000 1px;
     text-decoration: none;
   }
@@ -56,7 +55,7 @@ export default {
     background: #212222;
     color: #ff0000;
     border: solid #ff0000 1px;
-  } 
+  }
   .ebutton-primary:hover:disabled {
     cursor: default;
     border: solid #ff0000 1px;

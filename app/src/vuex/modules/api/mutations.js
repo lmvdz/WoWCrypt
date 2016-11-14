@@ -2,8 +2,21 @@ import * as types from './types'
 import settings from 'electron-settings'
 
 const mutations = {
+  [types.CALL] (state) {
+    let x = state.api.https
+    x += state.api.region
+    x += state.api.domain
+    x += state.api.request
+    for (var request in state.api.requestArgs) {
+      x += '/' + state.api.requestArgs[request]
+    }
+    x += '?locale=' + state.api.locale
+    x += '&apikey=' + state.api.apikey
+    state.api.full = x
+  },
   [types.SETUP] (state) {
     console.log('SETUP: API ---')
+    state.api.response = {}
     state.api.apikey = settings.getSync('settings.apikey')
     state.api.locale = 'en_GB'
     state.api.https = 'https://'
@@ -42,7 +55,7 @@ const mutations = {
   [types.CHALLANGE_MODE_REGION_LEADERBOARD] (state) {
     state.api.request = '/challange/region'
   },
-  [types.CHARACTER_PROFILE] (state, requestArgs) {
+  [types.CHARACTER] (state, requestArgs) {
     state.api.request = '/character'
     requestArgs = requestArgs.split(',')
     state.api.requestArgs = [requestArgs[0], requestArgs[1]]

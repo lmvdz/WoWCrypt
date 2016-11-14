@@ -1,8 +1,6 @@
 <template>
-  <container>
+  <lookup title="Settings">
     <div>
-      <h1>Settings</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
       <container id="apikey">
         <div>
           <h2>Community API Key</h2>
@@ -21,23 +19,21 @@
           </select>
         </div>
       </container>
-      <eButtonPrimary id="save" @clicked="saveSettings" title="Save"></eButtonPrimary>
+      <a class="link primary" @click="saveSettings">Save</a>
     </div>
-  </container>
+  </lookup>
 </template>
 
 <script>
 import Container from '../Container/Container'
+import Lookup from '../Lookup/Lookup'
 import EInput from '../EInput/EInput'
-import EButtonDanger from '../EButton/EButtonDanger'
-import EButtonPrimary from '../EButton/EButtonPrimary'
 
 export default {
   components: {
+    Lookup,
     Container,
-    EInput,
-    EButtonDanger,
-    EButtonPrimary
+    EInput
   },
   created () {
     this.loadSettings(this.$store.getters.settings)

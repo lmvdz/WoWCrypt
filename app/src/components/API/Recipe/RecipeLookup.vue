@@ -7,7 +7,7 @@
           <eInput @enter="getRecipe(recipeId)" @keyup="checkForChange" v-model="recipeId" placeholder="Recipe ID"></eInput>
         </div>
       </container>
-      <eButtonPrimary title="Search" id="search" @clicked="getRecipe(recipeId)"></eButtonPrimary>
+      <a  class="link primary" @click="getRecipe(recipeId)">Search</a>
       <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
       <h3 v-if="error" id="error">{{recipe.error}}</h3>
       <recipe v-if="show" :recipe="recipe"><recipe>
@@ -19,7 +19,6 @@
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 import Recipe from './Recipe'
 
 export default {
@@ -28,8 +27,7 @@ export default {
     Recipe,
     Container,
     Lookup,
-    EInput,
-    EButtonPrimary
+    EInput
   },
   data () {
     return {

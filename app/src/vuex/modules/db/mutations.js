@@ -30,7 +30,7 @@ const mutations = {
   [types.BOSS] (state, dbToSave) {
     state.db.bosses = dbToSave
   },
-  [types.CHARACTER_PROFILE] (state, dbToSave) {
+  [types.CHARACTER] (state, dbToSave) {
     state.db.character_profiles = dbToSave
   },
   [types.ZONE] (state, dbToSave) {

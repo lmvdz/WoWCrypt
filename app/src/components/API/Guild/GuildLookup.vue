@@ -13,7 +13,7 @@
           <eInput autofocus @enter="getGuild(guildRealm, guildName)" @keyup="checkForChange" v-model="guildName" placeholder="Guild Name"></eInput>
         </div>
       </container>
-      <eButtonPrimary title="Search" id="search" @clicked="getGuild(guildRealm, guildName)"></eButtonPrimary>
+      <a  class="link primary" @click="getGuild(guildRealm, guildName)">Search</a>
       <h2 v-if="inputHasNumber" id="error">please enter non numeric values</h2>
       <h3 v-if="error" id="error">{{guild.error}}</h3>
       <guild v-if="show" :guildData="guild"></boss>
@@ -25,13 +25,11 @@
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 import Guild from './Guild'
 
 export default {
   components: {
     EInput,
-    EButtonPrimary,
     Guild,
     Container,
     Lookup

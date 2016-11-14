@@ -30,7 +30,7 @@
             <eInput @enter="getItem(itemId)" @keyup="checkForChange" v-model="itemId" placeholder="Item ID"></eInput>
           </div>
         </container>
-        <eButtonPrimary title="Search" id="search" @clicked="getItem(itemId)"></eButtonPrimary>
+        <a  class="link primary" @click="getItem(itemId)">Search</a>
         <wowItem class="wowItem" v-if="show" :itemData="item"></wowItem>
         <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
         <h3 v-if="error" id="error">{{item.error}}</h3>
@@ -55,15 +55,11 @@
 <script>
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
-import EButtonDanger from '../../EButton/EButtonDanger'
 import EInput from '../../EInput/EInput'
 import WowItem from './WowItem'
 
 export default {
   components: {
-    EButtonPrimary,
-    EButtonDanger,
     EInput,
     WowItem,
     Container,

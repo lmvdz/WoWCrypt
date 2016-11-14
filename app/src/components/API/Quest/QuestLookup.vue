@@ -7,7 +7,7 @@
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
+
 import Quest from './Quest'
 
 export default {
@@ -15,7 +15,6 @@ export default {
     Lookup,
     Container,
     EInput,
-    EButtonPrimary,
     Quest
   },
   name: 'questlookup'

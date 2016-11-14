@@ -1,21 +1,16 @@
 <style scoped>
-.characterFound{
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 35vh;
-}
-.characterLookup{
+.lookup{
   float: left;
-  width: 50vh;
+  width: 45vw;
+  height: 60vh;
 }
-.characterHistory{
+.history{
   float: right;
-  width: 50vh;
-  height: 62.5vh;
+  width: 35vw;
+  height: 60vh;
 }
 ul{
-  height: 55.4vh;
+  height: 52vh;
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
@@ -31,37 +26,26 @@ li{
 
 <template>
   <div>
-    <lookup title="Character Lookup" class="characterLookup">
+    <lookup title="Character Lookup" class="lookup">
       <div>
-
         <container>
-
           <div class="">
             <h3>Realm</h3>
-            <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterRealm" placeholder="Character Realm"></eInput>
+            <eInput @enter="get('CHARACTER', [characterRealm, characterName], character, characters)" @keyup="checkForChange" v-model="characterRealm" placeholder="Character Realm"></eInput>
           </div>
-
         </container>
-
         <container>
-
           <div>
             <h3>Name</h3>
-            <eInput @enter="getCharacter(characterRealm, characterName)" @keyup="checkForChange" v-model="characterName" placeholder="Character Name"></eInput>
+            <eInput @enter="get('CHARACTER', [characterRealm, characterName], character, characters)" @keyup="checkForChange" v-model="characterName" placeholder="Character Name"></eInput>
           </div>
-
         </container>
-
-        <eButtonPrimary title="Search" id="search" @clicked="getCharacter(characterRealm, characterName)"></eButtonPrimary>
+        <a  class="link primary" @click="get('CHARACTER', [characterRealm, characterName], character, characters)">Search</a>
         <h2 v-if="inputHasNumber" id="error">please enter non-numeric values</h2>
         <h3 v-if="error" id="error">{{character.error}}</h3>
-        <div v-if="show" class="characterFound">
-          <character :useButton="true" :characterData="character"></character>
-        </div>
       </div>
     </lookup>
-    <container v-if="containsValidItems(this.characters)" class="characterHistory">
-
+    <container v-if="atleastOneNonError(this.characters)" class="history">
       <div>
         <h1>History</h1>
         <ul>
@@ -72,27 +56,22 @@ li{
           </div>
         </ul>
       </div>
-
     </container>
   </div>
-
 </template>
 
 <script>
-import EButtonDanger from '../../EButton/EButtonDanger'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 import EInput from '../../EInput/EInput'
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import Character from './Character'
+import $util from '../../../util.js'
 
 export default {
   components: {
     Lookup,
     Container,
     Character,
-    EButtonDanger,
-    EButtonPrimary,
     EInput
   },
   name: 'characterLookup',
@@ -113,175 +92,38 @@ export default {
     x = x.slice()
     this.characters = x
   },
+  computed: {
+    reverse () {
+      return this.bossDb.slice().reverse()
+    }
+  },
   methods: {
-    isValidItem (item) {
-      if (item.error === undefined && item.name !== undefined) {
-        console.log(item.name)
-        return true
-      }
-    },
-    containsValidItems (database) {
-      if (database.length > 0 && database.filter(this.isValidItem).length > 0) {
-        return true
-      } else {
-        return false
-      }
-    },
-    setupRaceName (characterRace) {
-      switch (characterRace) {
-        case 1:
-          return 'Human'
-        case 2:
-          return 'Orc'
-        case 3:
-          return 'Dwarf'
-        case 4:
-          return 'Undead'
-        case 5:
-          return 'Night Elf'
-        case 6:
-          return 'Tauren'
-        case 7:
-          return 'Gnome'
-        case 8:
-          return 'Troll'
-        case 9:
-          return 'Goblin'
-        case 10:
-          return 'Blood Elf'
-        case 11:
-          return 'Draenei'
-        case 22:
-          return 'Worgen'
-        case 24:
-        case 25:
-        case 26:
-          return 'Pandaren'
-      }
-    },
-    setupRaceColor (characterRace) {
-      switch (characterRace) {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 11:
-        case 22:
-        case 25:
-          return '#0066ff'
-        case 2:
-        case 4:
-        case 6:
-        case 8:
-        case 9:
-        case 10:
-        case 26:
-          return '#ff0000'
-        case 24:
-          return '#ffff00'
-      }
-    },
-    setupGenderName (characterGender) {
-      switch (characterGender) {
-        case 0:
-          return 'Unknown'
-        case 1:
-          return 'Male'
-        case 2:
-          return 'Female'
-      }
-    },
-    setupGenderColor (characterGender) {
-      switch (characterGender) {
-        case 1:
-          return '#bbbbbb'
-        case 2:
-          return '#000aff'
-        case 3:
-          return '#ff00bf'
-      }
-    },
-    setupClassColor (characterClass) {
-      switch (characterClass) {
-        case 1:
-          return '#C79C6E'
-        case 2:
-          return '#F58CBA'
-        case 3:
-          return '#ABD473'
-        case 4:
-          return '#FFF569'
-        case 5:
-          return '#FFFFFF'
-        case 6:
-          return '#C41F3B'
-        case 7:
-          return '#0070DE'
-        case 8:
-          return '#69CCF0'
-        case 9:
-          return '#9482C9'
-        case 10:
-          return '#00FF96'
-        case 11:
-          return '#FF7D0A'
-        case 12:
-          return '#A330C9'
-        default:
-          return '#EEEEEE'
-      }
-    },
-    setupClassName (characterClass) {
-      switch (characterClass) {
-        case 1:
-          return 'Warrior'
-        case 2:
-          return 'Paladin'
-        case 3:
-          return 'Hunter'
-        case 4:
-          return 'Rogue'
-        case 5:
-          return 'Priest'
-        case 6:
-          return 'Death Knight'
-        case 7:
-          return 'Shaman'
-        case 8:
-          return 'Mage'
-        case 9:
-          return 'Warlock'
-        case 10:
-          return 'Monk'
-        case 11:
-          return 'Druid'
-        case 12:
-          return 'Demon Hunter'
-        default:
-          return 'Unknown'
-      }
-    },
-    sanitizeCharacter (character) {
-      // class
-      character.classColor = this.setupClassColor(character.class)
-      character.classAsName = this.setupClassName(character.class)
-      //  gender
-      character.genderColor = this.setupGenderColor(character.gender)
-      character.genderName = this.setupGenderName(character.gender)
-      //  race
-      character.raceColor = this.setupRaceColor(character.race)
-      character.raceName = this.setupRaceName(character.race)
-      let isAlreadyInDb = false
-      for (var characterVar in this.characters) {
-        if (this.characters[characterVar].name === character.name && this.characters[characterVar].realm === character.realm) {
-          isAlreadyInDb = true
+    atleastOneNonError (db) {
+      for (var x in db) {
+        if (db[x].error === undefined) {
+          return true
         }
       }
-      if (!isAlreadyInDb) {
-        this.characters.push(character)
+      return false
+    },
+    purify (data) {
+      if (!$util.db.keyAlreadyExists(this.characters, data)) {
+        // class
+        data.classColor = $util.resource.classColor(data.class)
+        data.classAsName = $util.resource.className(data.class)
+        //  gender
+        data.genderColor = $util.resource.genderColor(data.gender)
+        data.genderName = $util.resource.genderName(data.gender)
+        //  race
+        data.raceColor = $util.resource.raceColor(data.race)
+        data.raceName = $util.resource.raceName(data.race)
+        $util.db.addToDb(this.characters, data)
         let x = this.characters.slice()
-        this.$store.dispatch('saveDatabase', ['CHARACTER_PROFILE', x])
+        this.$store.dispatch('saveDatabase', ['CHARACTER', x])
       }
+      this.show = true
+      this.error = false
+      this.$Progress.finish()
     },
     checkForChange () {
       //  input has numbers?
@@ -309,41 +151,39 @@ export default {
         this.show = false
       }
     },
-    getCharacter (characterRealm, characterName) {
-      if (characterRealm !== undefined && characterName !== undefined) {
-        let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
-        this.$store.dispatch('modifyAPI', ['CHARACTER_PROFILE', characterRealm, characterName])
-        x += this.$store.getters.api.request
-        x += '/' + this.$store.getters.api.requestArgs[0] + '/' + this.$store.getters.api.requestArgs[1]
-        x += '?locale=' + this.$store.getters.api.locale
-        x += '&apikey=' + this.$store.getters.api.apikey
-        this.$http.get(x).then((response) => {
-          this.character = response.data
-          this.show = true
-          this.lastSearchWasError = false
-          this.sanitizeCharacter(this.character)
-          console.log(this.character.gender)
-        }, (response) => {
-          if (response.status === 404) {
-            this.character = {
-              'error': 'Character Lookup Failed: ' + this.characterName + ' - ' + this.characterRealm,
-              'name': this.characterName,
-              'realm': this.characterRealm
-            }
-            this.show = false
-            this.error = this.lastSearchWasError = true
-            let isAlreadyInDb = false
-            for (var characterVar in this.characters) {
-              if (this.characters[characterVar].name === this.characterName && this.characters[characterVar].realm === this.characterRealm) {
-                isAlreadyInDb = true
+    get (...args) {
+      if (args[1][0] !== undefined && args[1][1] !== undefined) {
+        this.$Progress.start()
+        let response
+        let modifier = [args[0], [args[1][0], args[1][1]]]
+        console.log(modifier)
+        this.$store.dispatch('modifyAPI', modifier)
+        this.$store.dispatch('callAPI')
+        this.$http.get(this.$store.getters.api.full).then((data) => {
+          response = data.body
+        }, (data) => {
+          this.$Progress.fail()
+          if (data.status === 404) {
+            response = {error: '404'}
+          } else if (data.status === 403) {
+            response = {error: '403', message: 'invalid apikey?'}
+          }
+        }).then(() => {
+          if (response.error !== undefined) {
+            if (response.error === '404') {
+              modifier[0] = modifier[0].toLowerCase()
+              args[2] = {'error': 'Invalid ' + modifier[0].charAt(0).toUpperCase() + modifier[0].slice(1) + ' Name: ' + args[1][1] + 'Realm: ' + args[1][0], 'name': args[1][1], 'realm': args[1][0]}
+              if (!$util.db.keyAlreadyExists(args[3], args[2])) {
+                $util.db.addToDb(args[3], args[2])
               }
+            } else if (response.error === '403') {
+              args[2] = {'error': '403: ' + response.message}
             }
-            if (!isAlreadyInDb) {
-              this.characters.push(this.character)
-            }
-          } else if (response.status === 403) {
-            this.character = {'error': 'API Request Failed, check Settings'}
-            this.error = this.lastSearchWasError = true
+            this.error = true
+            this.show = false
+          } else {
+            args[2] = response
+            this.purify(args[2])
           }
         })
       }

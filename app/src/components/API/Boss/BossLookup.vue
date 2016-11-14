@@ -1,25 +1,23 @@
 <template>
   <div>
-    <lookup title="Boos Lookup">
+    <lookup title="Boos Lookup" class="lookup">
       <div>
         <container>
           <div>
             <h3>Boss ID</h3>
-            <eInput autofocus @enter="getBoss(bossId)" @keyup="checkForChange" v-model="bossId" placeholder="Boss ID"></eInput>
+            <eInput autofocus @enter="get('BOSS', [bossId], boss, bossDb)" @keyup="checkForChange" v-model="bossId" placeholder="Boss ID"></eInput>
           </div>
         </container>
-        <eButtonPrimary title="Search" id="search" @clicked="getBoss(bossId)"></eButtonPrimary>
+        <a  class="link primary" @click="get('BOSS', [bossId], boss, bossDb)">Search</a>
         <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
         <h3 v-if="error" id="error">{{boss.error}}</h3>
-        <boss v-if="show" :bossData="boss"></boss>
       </div>
     </lookup>
-
-    <container v-if="containsValidItems(this.bossDb)" class="bossLookupHistory">
+    <container v-if="atleastOneNonError(this.bossDb)" class="history">
       <div>
         <h1>History</h1>
         <ul>
-          <div v-for="bossItem in bossDb">
+          <div v-for="bossItem in reverse">
             <li v-if="bossItem.error === undefined">
               <boss :bossData="bossItem"></boss>
             </li>
@@ -27,7 +25,6 @@
         </ul>
       </div>
     </container>
-
   </div>
 </template>
 
@@ -35,13 +32,12 @@
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 import Boss from './Boss'
+import $util from '../../../util.js'
 
 export default {
   components: {
     EInput,
-    EButtonPrimary,
     Boss,
     Container,
     Lookup
@@ -63,110 +59,87 @@ export default {
     x = x.slice()
     this.bossDb = x
   },
+  computed: {
+    reverse () {
+      return this.bossDb.slice().reverse()
+    }
+  },
   methods: {
-    sanitizeBoss (boss) {
-      let isAlreadyInDb = false
-      for (var bossVar in this.bossDb) {
-        if (this.bossDb[bossVar].id === boss.id) {
-          isAlreadyInDb = true
+    atleastOneNonError (db) {
+      for (var x in db) {
+        if (db[x].error === undefined) {
+          return true
         }
       }
-      if (!isAlreadyInDb) {
-        this.bossDb.push(boss)
-        let x = this.bossDb.slice()
-        this.$store.dispatch('saveDatabase', ['BOSS', x])
-      }
-    },
-    getBossZoneName (boss) {
-      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
-      this.$store.dispatch('modifyAPI', ['ZONE', boss.zoneId])
-      x += this.$store.getters.api.request
-      x += '/' + this.$store.getters.api.requestArgs[0]
-      x += '?locale=' + this.$store.getters.api.locale
-      x += '&apikey=' + this.$store.getters.api.apikey
-      this.$http.get(x).then((response) => {
-        boss.zoneName = response.data.name
-      }, (response) => {
-        if (response.status === 404) {
-          boss.zoneName = 'Unknown'
-        } else if (response.status === 403) {
-          this.boss = {'error': 'API Request Failed, check Settings'}
-          this.error = this.lastSearchWasError = true
-        }
-      }).then(() => {
-        this.show = true
-        this.lastSearchWasError = false
-        this.sanitizeBoss(boss)
-      })
-    },
-    isValidItem (boss) {
-      if (boss.error === undefined && boss.name !== undefined) {
-        return true
-      }
-    },
-    containsValidItems (database) {
-      if (database.length > 0 && database.filter(this.isValidItem).length > 0) {
-        return true
-      } else {
-        return false
-      }
-    },
-    alreadyCached (boss) {
-      if ('' + boss.id === this.bossId) {
-        this.boss = boss
-        return true
-      }
+      return false
     },
     checkForChange () {
       this.inputHasCharacter = isNaN(this.bossId)
-      if (this.boss.id !== undefined) {
-        if (this.bossDb.filter(this.alreadyCached)) {
+      for (var boss in this.bossDb) {
+        if ('' + this.bossDb[boss].id === this.bossId) {
+          this.boss = this.bossDb[boss]
           if (this.boss.error !== undefined) {
-            this.error = '' + this.boss.id === this.bossId
+            this.error = true
             this.show = false
-            return
-          }
-          this.show = '' + this.boss.id === this.bossId
-        }
-        if (this.show || !this.lastSearchWasError) {
-          this.show = '' + this.boss.id === this.bossId
-        } else if (this.error || this.lastSearchWasError) {
-          this.error = '' + this.boss.id === this.bossId
-        }
-      } else {
-        for (var bossVar in this.bossDb) {
-          if ('' + this.bossDb[bossVar].id === this.bossId) {
-            this.boss = this.bossDb[bossVar]
+          } else {
             this.error = false
             this.show = true
-            return
           }
+          return
         }
       }
+      this.show = false
+      this.error = false
     },
-    getBoss (bossId) {
-      console.log('getting boss with id: ' + bossId)
-      let x = this.$store.getters.api.https + this.$store.getters.api.region + this.$store.getters.api.domain
-      this.$store.dispatch('modifyAPI', ['BOSS', bossId])
-      x += this.$store.getters.api.request
-      x += '/' + this.$store.getters.api.requestArgs[0]
-      x += '?locale=' + this.$store.getters.api.locale
-      x += '&apikey=' + this.$store.getters.api.apikey
-      this.$http.get(x).then((response) => {
-        this.boss = response.data
-        this.boss.WoWHeadLink = 'http://www.wowhead.com/npc=' + this.boss.id
-      }, (response) => {
-        if (response.status === 404) {
-          this.boss = {'error': 'Invalid Boss Id: ' + bossId, 'id': bossId}
-          this.error = this.lastSearchWasError = true
-          this.sanitizeBoss(this.boss)
-        } else if (response.status === 403) {
-          this.boss = {'error': 'API Request Failed, check Settings'}
-          this.error = this.lastSearchWasError = true
+    purify (data) {
+      if (!$util.db.keyAlreadyExists(this.bossDb, data)) {
+        this.get('ZONE', [data.zoneId], data.zoneName, this.bossDb)
+        this.$nextTick(() => {
+          data.WoWHeadLink = 'http://www.wowhead.com/npc=' + data.id
+          $util.db.addToDb(this.bossDb, data)
+          let x = this.bossDb.slice()
+          this.$store.dispatch('saveDatabase', ['BOSS', x])
+        })
+      }
+      this.show = true
+      this.error = false
+      this.$Progress.finish()
+    },
+    get (...args) {
+      if (args[0] !== 'ZONE') {
+        this.$Progress.start()
+      }
+      let modifier = [args[0], args[1][0]]
+      let response
+      this.$store.dispatch('modifyAPI', modifier)
+      this.$store.dispatch('callAPI')
+      this.$http.get(this.$store.getters.api.full).then((data) => {
+        response = data.body
+      }, (data) => {
+        this.$Progress.fail()
+        if (data.status === 404) {
+          response = {error: '404'}
+        } else if (data.status === 403) {
+          response = {error: '403', message: 'invalid apikey?'}
         }
       }).then(() => {
-        if (this.error === undefined) {
-          this.getBossZoneName(this.boss)
+        if (response.error !== undefined) {
+          if (response.error === '404') {
+            modifier[0] = modifier[0].toLowerCase()
+            args[2] = {'error': 'Invalid ' + modifier[0].charAt(0).toUpperCase() + modifier[0].slice(1) + ' ID: ' + args[1][0], 'id': args[1][0]}
+            if (!$util.db.keyAlreadyExists(args[3], args[2])) {
+              $util.db.addToDb(args[3], args[2])
+            }
+          } else if (response.error === '403') {
+            args[2] = {'error': '403: ' + response.message}
+          }
+          this.error = true
+          this.show = false
+        } else {
+          args[2] = response
+          if (args[0] !== 'ZONE') {
+            this.purify(args[2])
+          }
         }
       })
     }
@@ -175,10 +148,18 @@ export default {
 </script>
 
 <style scoped>
-  .bossLookupHistory{
-    height: 47vh;
+  .lookup{
+    float: left;
+    height: 50vh;
+    width: 35vw;
+  }
+  .history{
+    float: right;
+    height: 50vh;
+    width: 35vw;
   }
   ul{
+    height: 42vh;
     overflow: hidden;
     overflow-y: auto;
     overflow-x: hidden;

@@ -3,6 +3,8 @@ import actions from './actions'
 
 const state = {
   api: {
+    full: '',
+    response: {},
     apikey: '',
     locale: '',
     https: '',

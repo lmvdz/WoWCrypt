@@ -18,14 +18,14 @@ export default {
     margin-bottom: 5px;
     margin-top: 5px;
     padding: 5px 5px 5px 5px;
-    
+
     /** border radius */
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
 
     /** border */
-    border: solid #13ff6a 1px;
+    border: solid #df3d3d 1px;
 
     /** text decoration */
     text-decoration: none;

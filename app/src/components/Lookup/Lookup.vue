@@ -2,7 +2,7 @@
   <container>
     <div>
       <h1>{{title}}</h1>
-      <router-link to="/home"><eButtonDanger title="Home"></eButtonDanger></router-link>
+      <router-link class="link danger" to="/home">Home</router-link>
       <slot></slot>
     </div>
   </container>
@@ -10,13 +10,11 @@
 
 <script>
 import Container from '../Container/Container'
-import EButtonDanger from '../EButton/EButtonDanger'
 
 export default {
   name: 'lookup',
   props: ['title'],
   components: {
-    EButtonDanger,
     Container
   }
 }

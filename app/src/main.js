@@ -15,9 +15,11 @@ Vue.use(VueProgressBar, {
     time: '0.7s',
     opacity: '0.6s'
   },
+  trail: '100px',
   autoRevert: true,
   location: 'top',
-  inverse: false
+  inverse: false,
+  rGradient: true
 })
 
 Vue.use(Electron)

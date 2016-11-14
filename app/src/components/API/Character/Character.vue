@@ -12,7 +12,7 @@
             Gender: <span :style="{color: characterData.genderColor}"></span>{{characterData.genderName}}<br>
             Race: <span :style="{color: characterData.raceColor}">{{characterData.raceName}}</span>
             <div :useButton="useButton" v-if="useButton">
-              <eButtonPrimary title="Specifics" id="" @clicked="show = !show"></eButtonPrimary>
+              <a title="Specifics" id="" @clicked="show = !show"></a>
             </div>
           </h3>
       </div>
@@ -20,76 +20,76 @@
         <div>
           <ul>
             <li>
-              <eButtonPrimary disabled=true title="Achievements" id="achievements" @clicked="getCharacterAchievements(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterAchievements(characterData.realm, characterData.name)">Achievements</a>
                 <characterAchievements :achievementData="achievementData"></characterAchievements>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Appearance" id="appearance" @clicked="getCharacterAppearance(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterAppearance(characterData.realm, characterData.name)">Appearance</a>
                 <characterAppearance :appearanceData="appearanceData"></characterAppearance>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Feed" id="feed" @clicked="getCharacterFeed(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterFeed(characterData.realm, characterData.name)">Feed</a>
                 <characterFeed :feedData="feedData"></characterFeed>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Guild" id="guild" @clicked="getCharacterGuild(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterGuild(characterData.realm, characterData.name)">Guild</a>
                 <characterGuild :guildData="guildData"></characterGuild>
             </li>
             <li>
-              <eButtonPrimary disabled=true v-if="characterData.class === 3"title="Hunter Pets" id="hunterpets" @clicked="getCharacterHunterPets(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  v-if="characterData.class === 3"class="link" @click="getCharacterHunterPets(characterData.realm, characterData.name)">Hunter Pets</a>
                 <characterHunterPets :hunterPetsData="hunterPetsData"></characterHunterPets>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Items" id="items" @clicked="getCharacterItems(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterItems(characterData.realm, characterData.name)">Items</a>
                 <characterItems :itemsData="itemsData"></characterItems>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Guild" id="guild" @clicked="getCharacterGuild(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterGuild(characterData.realm, characterData.name)">Guild</a>
                 <characterGuild :guildData="guildData"></characterGuild>
             </li>
 
             <li>
-              <eButtonPrimary disabled=true title="Pets" id="pets" @clicked="getCharacterPets(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterPets(characterData.realm, characterData.name)">Pets</a>
                 <characterPets :petsData="petsData"></characterPets>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Pet Slots" id="petslots" @clicked="getCharacterPetSlots(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterPetSlots(characterData.realm, characterData.name)">Pet Slots</a>
                 <characterPetSlots :petslotsData="petslotsData"></characterPetSlots>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Professions" id="prefessions" @clicked="getCharacterProfessions(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterProfessions(characterData.realm, characterData.name)">Professions</a>
                 <characterProfessions :prefessionsData="prefessionsData"></characterProfessions>
             </li>
 
             <li>
-              <eButtonPrimary disabled=true title="PVP" id="pvp" @clicked="getCharacterPvp(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterPvp(characterData.realm, characterData.name)">PVP</a>
                 <characterPVP :pvpData="pvpData"></characterPVP>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Quests" id="quests" @clicked="getCharacterQuests(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterQuests(characterData.realm, characterData.name)">Quests</a>
                 <characterQuests :questsData="questsData"></characterQuests>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Reputation" id="reputation" @clicked="getCharacterReputation(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterReputation(characterData.realm, characterData.name)">Reputation</a>
                 <characterReputation :reputationData="reputationData"></characterReputation>
             </li>
 
             <li>
-              <eButtonPrimary disabled=true title="Statistics" id="statistics" @clicked="getCharacterStatistics(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterStatistics(characterData.realm, characterData.name)">Statistics</a>
               <characterStatistics :statisticsData="statisticsData"></characterStatistics>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Stats" id="stats" @clicked="getCharacterStats(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterStats(characterData.realm, characterData.name)">Stats</a>
                 <characterStats :statsData="statsData"></characterStats>
             </li>
             <li>
-              <eButtonPrimary disabled=true title="Talents" id="talents" @clicked="getCharacterTalents(characterData.realm, characterData.name)"></eButtonPrimary>
+              <a  class="link" @click="getCharacterTalents(characterData.realm, characterData.name)">Talents</a>
                 <characterTalents :talentsData="talentsData"></characterTalents>
             </li>
-            <li><eButtonPrimary disabled=true title="Titles" id="titles" @clicked="getCharacterTitles(characterData.realm, characterData.name)"></eButtonPrimary>
+            <li><a  class="link" @click="getCharacterTitles(characterData.realm, characterData.name)">Titles</a>
               <characterTitles :titlesData="titlesData"></characterTitles>
             </li>
-            <li><eButtonPrimary disabled=true title="Audit" id="audit" @clicked="getCharacterAudit(characterData.realm, characterData.name)"></eButtonPrimary>
+            <li><a  class="link" @click="getCharacterAudit(characterData.realm, characterData.name)">Audit</a>
               <characterAudit :auditData="auditData"></characterAudit>
             </li>
           </ul>
@@ -119,12 +119,10 @@ import CharacterTalents from './CharacterTalents'
 import CharacterTitles from './CharacterTitles'
 import CharacterAudit from './CharacterAudit'
 import Container from '../../Container/Container'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 
 export default {
   components: {
     Container,
-    EButtonPrimary,
     CharacterAchievements,
     CharacterAppearance,
     CharacterFeed,

@@ -2,6 +2,12 @@
 <html>
   <head>
     <script type="text/javascript" src="http://wow.zamimg.com/widgets/power.js"></script>
+    <style>
+      .wowhead-tooltip p {left: 275px !important;}
+      .wowhead-tooltip p div { border-radius: 5px !important; border: #df3d3d !important; border-width: 1px !important; border-style: none none dashed dashed !important;}
+      .wowhead-tooltip { border: #df3d3d 1px solid !important; background-color: rgba(0, 0, 0, .99) !important; }
+      .wowhead-tooltip table td, div.wowhead-tooltip table th { background:transparent; }
+    </style>
     <meta charset="utf-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>

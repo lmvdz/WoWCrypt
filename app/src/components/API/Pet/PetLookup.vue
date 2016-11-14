@@ -7,7 +7,6 @@
 import Lookup from '../../Lookup/Lookup'
 import Container from '../../Container/Container'
 import EInput from '../../EInput/EInput'
-import EButtonPrimary from '../../EButton/EButtonPrimary'
 import Pet from './Pet'
 
 export default {
@@ -15,7 +14,6 @@ export default {
     Lookup,
     Container,
     EInput,
-    EButtonPrimary,
     Pet
   },
   name: 'petlookup'

@@ -18,6 +18,7 @@ export default {
   },
   name: 'mountlookup'
 }
+
 </script>
 
 <style lang="css">

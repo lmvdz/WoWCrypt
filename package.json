@@ -6,7 +6,7 @@
   "homepage": "https://github.com/XeonPowder/WoWCrypt",
   "license": "MIT",
   "directories": {
-    "output": "builds"
+    "buildResources": "./app/assets"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,6 @@
     "win": {
       "iconUrl": "https://www.dropbox.com/s/p03zj0x9qdk04lc/icon.ico?dl=1"
     }
-  },
-  "directories": {
-    "buildResources": "./app/assets"
   },
   "scripts": {
     "build": "node tasks/release.js",
@@ -61,7 +58,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.5",
     "eslint-loader": "^1.3.0",
-    "eslint-plugin-html": "^1.3.0",
+    "eslint-plugin-html": "^1.6.0",
     "eslint-plugin-promise": "^3.3.2",
     "eslint-plugin-standard": "^2.0.1",
     "extract-text-webpack-plugin": "^1.0.1",

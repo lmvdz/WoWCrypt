@@ -1,9 +1,10 @@
 <template>
-  <div class="notifications">
-    <div v-for="notificationData in notifications">
-        <notification :notification="notificationData"></notification>
-    </div>
+<div class="notifications">
+  <div v-for="notificationData in notifications">
+    <notification :notification="notificationData"></notification>
   </div>
+</div>
+
 </template>
 
 <script>
@@ -19,7 +20,10 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
+
+
 </style>

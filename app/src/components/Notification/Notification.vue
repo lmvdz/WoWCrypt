@@ -1,9 +1,10 @@
 <template>
-  <div :style="{'border-color': getBorderColor(notification.type), 'background-color': getBackgroundColor(notification.type)}" class="notification">
-    <button @click="close" type="button" name="button">x</button>
-    <h5 v-if="notification.title">{{notification.title}}</h5>
-    <p v-if="notification.text">{{notification.text}}</p>
-  </div>
+<div :style="{'border-color': getBorderColor(notification.type), 'background-color': getBackgroundColor(notification.type)}" class="notification">
+  <button @click="close" type="button" name="button">x</button>
+  <h5 v-if="notification.title">{{notification.title}}</h5>
+  <p v-if="notification.text">{{notification.text}}</p>
+</div>
+
 </template>
 
 <script>
@@ -62,6 +63,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -69,9 +71,11 @@ export default {
   border: solid #bebaba 1px;
   margin-bottom: 10px;
 }
+
 #button {
   position: relative;
   right: 0px;
   top: 0px;
 }
+
 </style>

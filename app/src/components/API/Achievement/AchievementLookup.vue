@@ -107,7 +107,6 @@ export default {
       }
       this.show = true
       this.error = false
-      this.$Progress.finish()
     },
     checkForChange () {
       this.inputHasCharacter = isNaN(this.achievementId)
@@ -128,20 +127,21 @@ export default {
       this.error = false
     },
     get (...args) {
-      this.$Progress.start()
+      this.$pb.start('router')
       let modifier = [args[0], args[1][0]]
       let response
       this.$store.dispatch('modifyAPI', modifier)
       this.$store.dispatch('callAPI')
       this.$http.get(this.$store.getters.api.full).then((data) => {
         response = data.body
+        this.$pb.finish('router')
       }, (data) => {
         if (data.status === 404) {
           response = {error: '404'}
         } else if (data.status === 403) {
           response = {error: '403', message: 'invalid apikey?'}
         }
-        this.$Progress.fail()
+        this.$pb.fail('router')
       }).then(() => {
         if (response.error !== undefined) {
           if (response.error === '404') {

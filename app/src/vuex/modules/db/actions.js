@@ -1,7 +1,9 @@
 import * as types from './types'
 
 const actions = {
-  saveDatabase ({commit}, args) {
+  saveDatabase ({
+    commit
+  }, args) {
     switch (args[0]) {
       case 'ACHIEVEMENT':
         commit(types.ACHIEVEMENT, args[1])

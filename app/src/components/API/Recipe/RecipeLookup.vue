@@ -1,18 +1,20 @@
 <template>
-  <lookup title="Recipe Lookup">
-    <div>
-      <container>
-        <div>
-          <h3>Recipe ID</h3>
-          <eInput @enter="getRecipe(recipeId)" @keyup="checkForChange" v-model="recipeId" placeholder="Recipe ID"></eInput>
-        </div>
-      </container>
-      <a  class="link primary" @click="getRecipe(recipeId)">Search</a>
-      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-      <h3 v-if="error" id="error">{{recipe.error}}</h3>
-      <recipe v-if="show" :recipe="recipe"><recipe>
-    </div>
-  </lookup>
+<lookup title="Recipe Lookup">
+  <div>
+    <container>
+      <div>
+        <h3>Recipe ID</h3>
+        <eInput @enter="getRecipe(recipeId)" @keyup="checkForChange" v-model="recipeId" placeholder="Recipe ID"></eInput>
+      </div>
+    </container>
+    <a class="link primary" @click="getRecipe(recipeId)">Search</a>
+    <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+    <h3 v-if="error" id="error">{{recipe.error}}</h3>
+    <recipe v-if="show" :recipe="recipe">
+      <recipe>
+  </div>
+</lookup>
+
 </template>
 
 <script>
@@ -117,10 +119,10 @@ export default {
         this.show = true
       }
     },
-    getRecipe () {
+    getRecipe (recipeId) {
       let y = this.$store.getters.api
       let x = y.https + y.region + y.domain
-      this.$store.dispatch('modifyAPI', ['RECIPE', this.recipeId])
+      this.$store.dispatch('modifyAPI', ['RECIPE', recipeId])
       x += y.request
       x += '/' + y.requestArgs[0]
       x += '?locale=' + y.locale
@@ -132,14 +134,19 @@ export default {
         this.purify(this.recipe)
       }, (response) => {
         if (response.status === 404) {
-          this.recipe = {'error': 'Invalid Recipe ID: ' + this.recipeId, 'id': this.recipeId}
+          this.recipe = {
+            'error': 'Invalid Recipe ID: ' + this.recipeId,
+            'id': this.recipeId
+          }
           this.error = true
           this.show = false
           if (this.tryToPushToDatabase(this.recipeDb, this.recipe)) {
             console.log('pushed recipe with id: ' + this.recipe.id + ' to the database')
           }
         } else if (response.status === 403) {
-          this.achievement = {'error': 'API Request Failed, check Settings'}
+          this.achievement = {
+            'error': 'API Request Failed, check Settings'
+          }
           this.error = true
           this.show = false
         }
@@ -147,7 +154,10 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
+
+
 </style>

@@ -103,11 +103,11 @@ export default {
       }
       this.show = true
       this.error = false
-      this.$Progress.finish()
+      this.$pb.finish('router')
     },
     get (...args) {
       if (args[0] !== 'ZONE') {
-        this.$Progress.start()
+        this.$pb.start('router')
       }
       let modifier = [args[0], args[1][0]]
       let response
@@ -116,7 +116,7 @@ export default {
       this.$http.get(this.$store.getters.api.full).then((data) => {
         response = data.body
       }, (data) => {
-        this.$Progress.fail()
+        this.$pb.fail('router')
         if (data.status === 404) {
           response = {error: '404'}
         } else if (data.status === 403) {

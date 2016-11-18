@@ -18,6 +18,7 @@ export default {
   },
   name: 'pvplookup'
 }
+
 </script>
 
 <style lang="css">

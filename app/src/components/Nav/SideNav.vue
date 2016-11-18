@@ -7,19 +7,21 @@
 <script>
 import Container from '../Container/Container'
 export default {
-  props: ['location']
+  props: ['location'],
   components: {
     Container
   },
   name: 'sidenav'
 }
+
 </script>
 
 <style scoped>
-  .sidenav {
-    position: fixed;
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+.sidenav {
+  position: fixed;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 </style>

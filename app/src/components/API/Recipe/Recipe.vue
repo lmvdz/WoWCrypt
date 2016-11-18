@@ -1,12 +1,13 @@
 <template>
-  <container>
-    <a class="recipeLink" @click="preventRepage" :href="recipe.link">
-      <h3>
+<container>
+  <a class="recipeLink" @click="preventRepage" :href="recipe.link">
+    <h3>
         <span>{{recipe.name}}</span>
         <span v-if="recipe.profession !== undefined"> - <span :style="{color: getProfessionColor()}">{{recipe.profession}}</span></span>
       </h3>
-    </a>
-  </container>
+  </a>
+</container>
+
 </template>
 
 <script>
@@ -34,6 +35,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
@@ -42,4 +44,5 @@ export default {
   /** text decoration */
   text-decoration: none;
 }
+
 </style>

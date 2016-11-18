@@ -1,69 +1,92 @@
 'use strict'
 
 const electron = require('electron')
-const {Menu} = require('electron')
+const {
+  Menu
+} = require('electron')
 const app = electron.app
 const path = require('path')
 const BrowserWindow = electron.BrowserWindow
 
-let menuTemplate = [
-  {
-    label: "WoW Crypt",
-    submenu: [
-      { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
-      { type: "separator" },
-      { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
-    ]
+let menuTemplate = [{
+  label: "WoW Crypt",
+  submenu: [{
+    label: "About Application",
+    selector: "orderFrontStandardAboutPanel:"
   }, {
-    label: "Edit",
-    submenu: [
-      { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-      { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-      { type: "separator" },
-      { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-      { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-      { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-      { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-    ]
+    type: "separator"
   }, {
-    label: "View",
-    submenu: [
-      {
-        label: "Reload",
-        accelerator: "CmdOrCtrl+R",
-        click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload()
-        }
-      }, {
-        label: 'Toggle Developer Tools',
-        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-        }
-      }, {
-        type: 'separator'
-      }, {
-        role: 'resetzoom'
-      }, {
-        role: 'zoomin'
-      }, {
-        role: 'zoomout'
-      }, {
-        type: 'separator'
-      }, {
-        role: 'togglefullscreen'
-      }
-    ]
+    label: "Quit",
+    accelerator: "Command+Q",
+    click: function () {
+      app.quit();
+    }
+  }]
+}, {
+  label: "Edit",
+  submenu: [{
+    label: "Undo",
+    accelerator: "CmdOrCtrl+Z",
+    selector: "undo:"
   }, {
-    role: 'Help',
-    submenu: [
-      {
-        label: 'Learn More',
-        click () { require('electron').shell.openExternal('http://github.com/XeonPowder/WoWCrypt') }
-      }
-    ]
-  }
-]
+    label: "Redo",
+    accelerator: "Shift+CmdOrCtrl+Z",
+    selector: "redo:"
+  }, {
+    type: "separator"
+  }, {
+    label: "Cut",
+    accelerator: "CmdOrCtrl+X",
+    selector: "cut:"
+  }, {
+    label: "Copy",
+    accelerator: "CmdOrCtrl+C",
+    selector: "copy:"
+  }, {
+    label: "Paste",
+    accelerator: "CmdOrCtrl+V",
+    selector: "paste:"
+  }, {
+    label: "Select All",
+    accelerator: "CmdOrCtrl+A",
+    selector: "selectAll:"
+  }]
+}, {
+  label: "View",
+  submenu: [{
+    label: "Reload",
+    accelerator: "CmdOrCtrl+R",
+    click(item, focusedWindow) {
+      if (focusedWindow) focusedWindow.reload()
+    }
+  }, {
+    label: 'Toggle Developer Tools',
+    accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+    click(item, focusedWindow) {
+      if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+    }
+  }, {
+    type: 'separator'
+  }, {
+    role: 'resetzoom'
+  }, {
+    role: 'zoomin'
+  }, {
+    role: 'zoomout'
+  }, {
+    type: 'separator'
+  }, {
+    role: 'togglefullscreen'
+  }]
+}, {
+  role: 'Help',
+  submenu: [{
+    label: 'Learn More',
+    click () {
+      require('electron').shell.openExternal('http://github.com/XeonPowder/WoWCrypt')
+    }
+  }]
+}]
 let mainWindowTemplate = {
   title: 'WoW Crypt',
   frame: true,
@@ -93,23 +116,21 @@ if (process.env.NODE_ENV === 'development') {
   config.url = `file://${__dirname}/dist/index.html`
   config.loadingURI = `file://${__dirname}/dist/loading.html`
 }
+
 function darwin () {
   // Edit menu.
-  menuTemplate[1].submenu.push(
-    {
-      type: 'separator'
+  menuTemplate[1].submenu.push({
+    type: 'separator'
+  }, {
+    label: 'Speech',
+    submenu: [{
+      role: 'startspeaking'
     }, {
-      label: 'Speech',
-      submenu: [
-        {
-          role: 'startspeaking'
-        }, {
-          role: 'stopspeaking'
-        }
-      ]
-    }
-  )
+      role: 'stopspeaking'
+    }]
+  })
 }
+
 function createWindow () {
   /**
    * Initial window options
@@ -153,8 +174,8 @@ function createLoadingScreen () {
   loadingScreen.loadURL(config.loadingURI)
 
   loadingScreen.webContents.on('did-finish-load', () => {
-      loadingScreen.show()
-      createWindow()
+    loadingScreen.show()
+    createWindow()
   })
 
   loadingScreen.on('closed', () => loadingScreen = null)

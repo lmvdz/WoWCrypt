@@ -19,6 +19,7 @@ export default {
   },
   name: 'realmlookup'
 }
+
 </script>
 
 <style lang="css">

@@ -138,11 +138,17 @@ export default {
           this.purify(this.guild)
         }, (response) => {
           if (response.status === 404) {
-            this.guild = {'error': 'Guild Lookup Failed: ' + realm + ' - ' + name, 'name': name, 'realm': realm}
+            this.guild = {
+              'error': 'Guild Lookup Failed: ' + realm + ' - ' + name,
+              'name': name,
+              'realm': realm
+            }
             this.show = false
             this.error = true
           } else if (response.status === 403) {
-            this.guild = {'error': 'API Request Failed, check Settings'}
+            this.guild = {
+              'error': 'API Request Failed, check Settings'
+            }
             this.error = true
             this.show = false
           }
@@ -151,6 +157,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="css">

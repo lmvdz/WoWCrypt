@@ -19,6 +19,7 @@ export default {
   },
   name: 'questlookup'
 }
+
 </script>
 
 <style lang="css">

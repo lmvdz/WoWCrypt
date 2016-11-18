@@ -1,7 +1,9 @@
 import * as types from './types'
 
 const actions = {
-  saveSettings ({commit}, settings) {
+  saveSettings ({
+    commit
+  }, settings) {
     commit(types.SAVE, settings)
   }
 }

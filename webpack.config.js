@@ -19,44 +19,37 @@ let config = {
   },
   module: {
     preLoaders: [],
-    loaders: [
-      {
+    loaders: [{
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-      },
-      {
+      }, {
         test: /\.html$/,
         loader: 'vue-html-loader'
       },
       /**
-      *   Temporary fix for electron-settings being written in es6, since uglifyjs doesn't work well with es6
-      **/
+       *   Temporary fix for electron-settings being written in es6, since uglifyjs doesn't work well with es6
+       **/
       {
         test: [/node_modules[\\\/](?:electron-settings|key-path-helpers)[\\\/]lib[\\\/](?:.+).js/],
         loaders: ['babel-loader']
-      },
-      {
+      }, {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
+      }, {
         test: /\.json$/,
         loader: 'json-loader'
-      },
-      {
+      }, {
         test: /\.vue$/,
         loader: 'vue-loader'
-      },
-      {
+      }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         query: {
           limit: 10000,
           name: 'imgs/[name].[hash:7].[ext]'
         }
-      },
-      {
+      }, {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         query: {
@@ -79,9 +72,10 @@ let config = {
       title: settings.name,
       inject: false
     }),
-    new CopyWebpackPlugin([
-      {from: 'app/assets', to: 'assets'}
-    ]),
+    new CopyWebpackPlugin([{
+      from: 'app/assets',
+      to: 'assets'
+    }]),
     new webpack.NoErrorsPlugin()
   ],
   output: {
@@ -113,17 +107,14 @@ if (process.env.NODE_ENV !== 'production') {
    * Apply ESLint
    */
   if (settings.eslint) {
-    config.module.preLoaders.push(
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.vue$/,
-        loader: 'eslint-loader'
-      }
-    )
+    config.module.preLoaders.push({
+      test: /\.js$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/
+    }, {
+      test: /\.vue$/,
+      loader: 'eslint-loader'
+    })
   }
 }
 

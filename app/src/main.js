@@ -13,13 +13,18 @@ Vue.use(VueProgressBar, {
   thickness: '5px',
   transition: {
     time: '0.7s',
-    opacity: '0.6s'
+    opacity: '1.6s'
   },
-  trail: '100px',
+  trail: '-1px',
   autoRevert: true,
   location: 'top',
   inverse: false,
-  rGradient: true
+  gradient: {
+    use: true,
+    gradient: 'predefined'
+  },
+  init: true,
+  bounce: true
 })
 
 Vue.use(Electron)
@@ -28,10 +33,12 @@ Vue.use(Router)
 Vue.config.debug = true
 
 const router = new Router({
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes
 })
-/* eslint-disable no-new */
+  /* eslint-disable no-new */
 new Vue({
   router,
   ...App

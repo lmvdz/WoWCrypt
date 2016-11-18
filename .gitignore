@@ -10,4 +10,5 @@ thumbs.db
 !.gitkeep
 app/node_modules/*
 !app/node_modules/vue-progressbar
+app/node_modules/vue-progressbar/node_modules/*
 ./yarn.lock

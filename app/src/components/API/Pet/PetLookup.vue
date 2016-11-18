@@ -18,6 +18,7 @@ export default {
   },
   name: 'petlookup'
 }
+
 </script>
 
 <style lang="css">

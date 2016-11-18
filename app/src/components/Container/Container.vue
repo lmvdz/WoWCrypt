@@ -8,6 +8,7 @@
 export default {
   name: 'container'
 }
+
 </script>
 
 <style scoped lang="css">

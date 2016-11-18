@@ -1,10 +1,14 @@
 import * as types from './types'
 
 const actions = {
-  addNotification ({ commit }, notification) {
+  addNotification ({
+    commit
+  }, notification) {
     commit(types.ADD, notification)
   },
-  removeNotification ({ commit }, notification) {
+  removeNotification ({
+    commit
+  }, notification) {
     commit(types.REMOVE, notification)
   }
 }

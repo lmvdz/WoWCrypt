@@ -1,10 +1,14 @@
 import * as types from './types'
 
 const actions = {
-  callAPI ({commit}, args) {
+  callAPI ({
+    commit
+  }, args) {
     commit(types.CALL)
   },
-  modifyAPI ({commit}, args) {
+  modifyAPI ({
+    commit
+  }, args) {
     let requestArgs
     switch (args[0]) {
       case 'SET_REGION':

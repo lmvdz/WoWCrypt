@@ -1,54 +1,58 @@
 <style scoped>
-  .wowItemLookup{
-    height: 50%;
-  }
-  .itemLookupHistory{
-    height: 39vh;
-  }
-  ul{
-    height: 31vh;
-    overflow: hidden;
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  li{
-    list-style-position: inside;
-    display: inline-block;
-    list-style-type: none;
-  }
+.wowItemLookup {
+  height: 50%;
+}
+
+.itemLookupHistory {
+  height: 39vh;
+}
+
+ul {
+  height: 31vh;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-position: inside;
+  display: inline-block;
+  list-style-type: none;
+}
+
 </style>
 
 <template>
-  <div class="">
-    <lookup title="Item Lookup" class="wowItemLookup">
-      <div>
-        <container>
-          <div>
-            <h3>Item ID</h3>
-            <eInput @enter="getItem(itemId)" @keyup="checkForChange" v-model="itemId" placeholder="Item ID"></eInput>
-          </div>
-        </container>
-        <a  class="link primary" @click="getItem(itemId)">Search</a>
-        <wowItem class="wowItem" v-if="show" :itemData="item"></wowItem>
-        <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
-        <h3 v-if="error" id="error">{{item.error}}</h3>
-      </div>
-    </lookup>
-    <container v-if="containsValidItems(this.itemDb)" class="itemLookupHistory">
-      <div>
-        <h1>History</h1>
-        <ul>
-          <div v-for="itm in itemDb">
-            <li v-if="itm.error === undefined">
-              <wowItem class="wowItem" :itemData="itm"></wowItem>
-            </li>
-          </div>
-        </ul>
-      </div>
-    </container>
-  </div>
+<div class="">
+  <lookup title="Item Lookup" class="wowItemLookup">
+    <div>
+      <container>
+        <div>
+          <h3>Item ID</h3>
+          <eInput @enter="getItem(itemId)" @keyup="checkForChange" v-model="itemId" placeholder="Item ID"></eInput>
+        </div>
+      </container>
+      <a class="link primary" @click="getItem(itemId)">Search</a>
+      <wowItem class="wowItem" v-if="show" :itemData="item"></wowItem>
+      <h2 v-if="inputHasCharacter" id="error">please enter a numeric only value</h2>
+      <h3 v-if="error" id="error">{{item.error}}</h3>
+    </div>
+  </lookup>
+  <container v-if="containsValidItems(this.itemDb)" class="itemLookupHistory">
+    <div>
+      <h1>History</h1>
+      <ul>
+        <div v-for="itm in itemDb">
+          <li v-if="itm.error === undefined">
+            <wowItem class="wowItem" :itemData="itm"></wowItem>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </container>
+</div>
 
 </template>
 
@@ -179,7 +183,10 @@ export default {
         this.sanitizeItem(this.item)
       }, (response) => {
         if (response.status === 404) {
-          this.item = {'error': 'Invalid Item Id: ' + itemId, 'id': itemId}
+          this.item = {
+            'error': 'Invalid Item Id: ' + itemId,
+            'id': itemId
+          }
           this.error = this.lastSearchWasError = true
           let isAlreadyInDb = false
           for (var itemVar in this.itemDb) {
@@ -191,11 +198,14 @@ export default {
             this.itemDb.push(this.item)
           }
         } else if (response.status === 403) {
-          this.item = {'error': 'API Request Failed, check Settings'}
+          this.item = {
+            'error': 'API Request Failed, check Settings'
+          }
           this.error = this.lastSearchWasError = true
         }
       })
     }
   }
 }
+
 </script>
